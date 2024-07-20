@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75e9df8cd8b4e8ac44a09f4dcc4c373, type: 3}
+  m_Name: RoundBoardLevels
+  m_EditorClassIdentifier:
+  _board: {fileID: 114889137109871223, guid: 82417bbb9b7a6cc47bf6fa03ea4dfa2b, type: 2}
+  _cubePrefab: {fileID: 114702791990998257, guid: cb7b1270ac00b6148aa17d0def6a69e5, type: 2}
+  levels:
+  - {fileID: 11400000, guid: 49c0d7b07add0964e9927e3ada5d6dd0, type: 2}
+  - {fileID: 11400000, guid: ebe7e5e07b1d89f408c0d4131e4df562, type: 2}

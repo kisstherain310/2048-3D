@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75e9df8cd8b4e8ac44a09f4dcc4c373, type: 3}
+  m_Name: ObstacleLevels
+  m_EditorClassIdentifier:
+  _board: {fileID: 114692813354309116, guid: a758f2622dc5c0440bb4952d44a3c9da, type: 2}
+  _cubePrefab: {fileID: 114702791990998257, guid: cb7b1270ac00b6148aa17d0def6a69e5, type: 2}
+  levels:
+  - {fileID: 11400000, guid: 270cbc9e6e6b8cf4fb31a99fe2f59805, type: 2}
+  - {fileID: 11400000, guid: 59024b393ae72e34896c6e35a6d18bd5, type: 2}
+  - {fileID: 11400000, guid: b3e3ca2385096eb4f83c5179ae883117, type: 2}
+  - {fileID: 11400000, guid: 87f86e974afc8d045879ccb407d54005, type: 2}
+  - {fileID: 11400000, guid: 6a41219028dee5447ba271adf77f958b, type: 2}
+  - {fileID: 11400000, guid: 3a3fb15db6feffa468221ec16bb91f75, type: 2}
+  - {fileID: 11400000, guid: 488b364a0e899fe4a8518246c7702235, type: 2}
+  - {fileID: 11400000, guid: 7e8e27b1d8ba52f448a9470dfe56215a, type: 2}
+  - {fileID: 11400000, guid: 0e7c6eac9db78114ebd98c7ee2d782cb, type: 2}
+  - {fileID: 11400000, guid: c1b37c797a8e42344b03964d82d59abe, type: 2}
+  - {fileID: 11400000, guid: d6c33a17448be2949ae6cfc81e535d34, type: 2}

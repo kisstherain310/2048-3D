@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872aab3eb08e59b2598012c852fb686c, type: 3}
+  m_Name: SetItemData Candies
+  m_EditorClassIdentifier:
+  _iapId: com.colobolo.chainball.set_candies
+  _itemName: Candies
+  _localizationKey: PACK_CANDIES
+  _itemType: 2
+  _itemShopImage: {fileID: 21300000, guid: 1c8d3590e0bfc154f9d39ba189942226, type: 2}
+  _iap: 1
+  _adsToReceive: 1
+  _preBought: 0
+  _previewInPack: {fileID: 0}
+  _setType: 0
+  _backgroundItemsData:
+  - {fileID: 11400000, guid: 51c0066f9ee5e6044a0ef65652fc1be3, type: 2}
+  _boardItemsData:
+  - {fileID: 11400000, guid: d19434e94a92061418054ce8c804eef5, type: 2}
+  _setItemsData: []
+  _isNoAdsPack: 0

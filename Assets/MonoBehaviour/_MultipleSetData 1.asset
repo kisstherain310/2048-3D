@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872aab3eb08e59b2598012c852fb686c, type: 3}
+  m_Name: _MultipleSetData 1
+  m_EditorClassIdentifier:
+  _iapId: com.colobolo.chainball.set_hobbies
+  _itemName: Hobbies pack
+  _localizationKey: PACK_HOBBIES_PACK
+  _itemType: 2
+  _itemShopImage: {fileID: 21300000, guid: 1a6e92510c71b9d4b9b1705f5ceb31bb, type: 2}
+  _iap: 1
+  _adsToReceive: 1
+  _preBought: 0
+  _previewInPack: {fileID: 0}
+  _setType: 1
+  _backgroundItemsData: []
+  _boardItemsData: []
+  _setItemsData:
+  - {fileID: 11400000, guid: 007cb8729eb35354ba437e0b476d2c2d, type: 2}
+  - {fileID: 11400000, guid: 03687b4e74d7053489531474a2606516, type: 2}
+  - {fileID: 11400000, guid: c050c59eee3201d4c90ec72fe3109571, type: 2}
+  - {fileID: 11400000, guid: 5e5ccf0da8a6b9c4db91e758ecc8235b, type: 2}
+  _isNoAdsPack: 0

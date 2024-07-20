@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -395462249, guid: 67dfb1fdfb2b407222eda8e23ac8b724, type: 3}
+  m_Name: TMP Settings
+  m_EditorClassIdentifier:
+  m_enableWordWrapping: 1
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  m_enableTintAllSprites: 0
+  m_enableParseEscapeCharacters: 1
+  m_EnableRaycastTarget: 1
+  m_GetFontFeaturesAtRuntime: 1
+  m_missingGlyphCharacter: 0
+  m_warningsDisabled: 1
+  m_defaultFontAsset: {fileID: 11400000, guid: c636b7d7908e3454db1f2ad2ce3d7878, type: 2}
+  m_defaultFontAssetPath: Fonts & Materials/
+  m_defaultFontSize: 36
+  m_defaultAutoSizeMinRatio: 0.5
+  m_defaultAutoSizeMaxRatio: 2
+  m_defaultTextMeshProTextContainerSize: {x: 20, y: 5}
+  m_defaultTextMeshProUITextContainerSize: {x: 200, y: 50}
+  m_autoSizeTextContainer: 0
+  m_IsTextObjectScaleStatic: 0
+  m_fallbackFontAssets:
+  - {fileID: 11400000, guid: 32313bf56464a624aaf26c7502b6e4ec, type: 2}
+  - {fileID: 11400000, guid: 641a65cc695b46d4096039326df18533, type: 2}
+  - {fileID: 11400000, guid: b553e490f0ee5074fa2610025d497a6c, type: 2}
+  - {fileID: 11400000, guid: 7dfc93bb20b04bd41994d8bfbb3b15a8, type: 2}
+  - {fileID: 11400000, guid: bc024d399c0a43c44a4876ca7d70c989, type: 2}
+  - {fileID: 11400000, guid: 1bc6aa35e6e629747ad6b24b1e2f56bb, type: 2}
+  m_matchMaterialPreset: 1
+  m_defaultSpriteAsset: {fileID: 0}
+  m_defaultSpriteAssetPath: Sprite Assets/
+  m_enableEmojiSupport: 1
+  m_MissingCharacterSpriteUnicode: 0
+  m_defaultColorGradientPresetsPath: Color Gradient Presets/
+  m_defaultStyleSheet: {fileID: 11400000, guid: c7c580f91f55c884bb47dc175f734aed, type: 2}
+  m_StyleSheetsResourcePath:
+  m_leadingCharacters: {fileID: 4900000, guid: 797ff63ec4821c747a0775fe0a07a5cf, type: 3}
+  m_followingCharacters: {fileID: 4900000, guid: c9be8c575f885f44e9b565e60f7891fb, type: 3}
+  m_UseModernHangulLineBreakingRules: 0

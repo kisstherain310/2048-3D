@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f9ba303da57607011edddd5f12f5b4, type: 3}
+  m_Name: FrozenCubes
+  m_EditorClassIdentifier:
+  _eventGameMode: 5
+  _gameModePrefab: {fileID: 114042566806751983, guid: b7c24ecaaf284604986d8983888ca650, type: 2}
+  _eventIcon: {fileID: 21300000, guid: 57c1a06a82ee23e48b13fd5136c07633, type: 2}
+  _eventNameLocaleId: EVENT_GAMEMODE_FROZENCUBES
+  _eventExplanationLocaleId: EVENT_GAMEMODE_FROZENCUBES_DESCRIPTION
+  _levels: {fileID: 11400000, guid: 97bc162d4e6463b448e0ae332b225071, type: 2}
