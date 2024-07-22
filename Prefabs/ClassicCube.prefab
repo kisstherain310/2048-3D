@@ -1336,10 +1336,13 @@ GameObject:
   - component: {fileID: 6884971680770279644}
   - component: {fileID: 6884971680770279645}
   - component: {fileID: 968539170340219147}
+  - component: {fileID: 2229036593801160047}
   - component: {fileID: 3785949312432054607}
+  - component: {fileID: 8439709706415541837}
+  - component: {fileID: 6591185440054136658}
   m_Layer: 0
   m_Name: ClassicCube
-  m_TagString: cube
+  m_TagString: ClassicCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1497,8 +1500,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0283575, y: 1.0432072, z: 1.0522435}
-  m_Center: {x: 0.0026170015, y: -0.0053795576, z: -0.02167666}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6884971680770279645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1512,10 +1515,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubeUI: {fileID: 6836342483201827033}
+  cubeMove: {fileID: 2229036593801160047}
   cubeX2Move: {fileID: 3785949312432054607}
+  spawnEffect: {fileID: 8439709706415541837}
   Line: {fileID: 2056837500823891335}
-  pushForce: 20
-  maxPosx: 1.63
+  pushForce: 25
   rb: {fileID: 0}
   cubeNumber: 0
   isMainCube: 1
@@ -1532,7 +1536,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb9e6a100868a0449a3d230654a20bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  momen: 15
+  momen: 20
+  jumpForce: 3
+--- !u!114 &2229036593801160047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6836382020382003889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fec650ec49c9a439b0b91068242c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPosx: 1.63
 --- !u!114 &3785949312432054607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1546,3 +1564,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.7
+--- !u!114 &8439709706415541837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6836382020382003889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122868f99dce2d443b1db425bdcdbd97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleMultiplier: 1.3
+  duration: 0.3
+--- !u!114 &6591185440054136658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6836382020382003889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []

@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private Transform defaultCubeSpawnPoint;
     [SerializeField] public ClassicCubeManager classicCubeManager;
+    [SerializeField] public JokerCubeManager jokerCubeManager;
     [SerializeField] private ListCube listCube;
     public static GameManager Instance;
 
@@ -15,9 +16,19 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        InitClassicCubeManager();
+        InitJokerCubeManager();
+    }
+    private void InitClassicCubeManager()
+    {
         classicCubeManager.getDefaultCubeSpawnPoint(defaultCubeSpawnPoint);
         classicCubeManager.getListCube(listCube);
         classicCubeManager.InitClassicCube();
+    }
+    private void InitJokerCubeManager()
+    {
+        jokerCubeManager.getDefaultCubeSpawnPoint(defaultCubeSpawnPoint);
+        jokerCubeManager.getListCube(listCube);
     }
 
     public Vector3 FindCubeNearest(Cube newCube)

@@ -9,7 +9,6 @@ public class CubeX2Move : MonoBehaviour
 
     public void moveToTarget(Vector3 targetPosition)
     {
-        Debug.Log("Move to target");
         StartCoroutine(IMoveToTargetCoroutine(targetPosition));
     }
 
@@ -21,7 +20,7 @@ public class CubeX2Move : MonoBehaviour
         float elapsedTime = 0f;
         while (elapsedTime < duration)
         {
-            transform.position += speed * Time.deltaTime * direction;
+            transform.position += speed * Time.deltaTime * direction * 1.1f;
             elapsedTime += Time.deltaTime;
             yield return null;
         }

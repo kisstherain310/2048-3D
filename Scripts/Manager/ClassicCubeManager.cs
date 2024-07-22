@@ -52,6 +52,6 @@ public class ClassicCubeManager : MonoBehaviour
     }
 
     public int GenerateRandomNumber () {
-        return (int)Mathf.Pow (2, Random.Range (1, 4)) ;
+        return (int)Mathf.Pow (2, Random.Range (1, 5)) ;
     }
 }
