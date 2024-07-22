@@ -7,7 +7,7 @@ public class FXManager : MonoBehaviour {
 
     //singleton class
     public static FXManager Instance ;
-
+    // ------- Initialization ----------------
     private void Awake () {
         Instance = this ;
         cubeExplosionFXMainModule = new ParticleSystem.MainModule[cubeExplosionFX.Length];
@@ -19,10 +19,12 @@ public class FXManager : MonoBehaviour {
             cubeExplosionFXMainModule[i] = cubeExplosionFX[i].main;
         }
     }
+
+    //  ------- Get FX ----------------
     public GameObject GetFX () {
         return this.gameObject;
     }
-
+    // ------- Play Cube Explosion FX ----------------
     public void PlayCubeExplosionFX (Vector3 position, Color color) {
         for (int i = 0; i < cubeExplosionFX.Length; i++)
         {

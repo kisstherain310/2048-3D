@@ -7,16 +7,14 @@ public class JokerCubeManager : MonoBehaviour
 {
     private ListCube listCube;
     private Transform defaultCubeSpawnPoint;
-    public JokerCube jokerCube = null;
+    [HideInInspector] public JokerCube jokerCube = null;
 
-    public void getListCube(ListCube listCube)
+    public void Initialize(ListCube listCube, Transform defaultCubeSpawnPoint)
     {
         this.listCube = listCube;
-    }
-    public void getDefaultCubeSpawnPoint(Transform defaultCubeSpawnPoint)
-    {
         this.defaultCubeSpawnPoint = defaultCubeSpawnPoint;
     }
+    // ----------------- SpawnJokerCube -----------------
     public void InitJokerCube(){
         JokerCube newJokerCube = ObjectPooler.Instance.SpawnFromPool("JokerCube", defaultCubeSpawnPoint.position, Quaternion.identity).GetComponent<JokerCube>();   
         newJokerCube.SetMainCube(true);
@@ -24,6 +22,7 @@ public class JokerCubeManager : MonoBehaviour
         jokerCube = newJokerCube;
     }
 
+    // ----------------- Helper Method -----------------
     public void SpawnJokerCube()
     {
         if(jokerCube != null) DestroyJokerCube(jokerCube);

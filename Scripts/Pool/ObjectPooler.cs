@@ -14,14 +14,20 @@ public class ObjectPooler : MonoBehaviour
     }
 
     public List<Pool> pools;
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
+    private Dictionary<string, Queue<GameObject>> poolDictionary;
 
     void Awake()
     {
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
+    {
+        InitializePools();
+    }
+    // ---- Initialize Pool --------------------------------
+    private void InitializePools()
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
@@ -39,22 +45,16 @@ public class ObjectPooler : MonoBehaviour
             poolDictionary.Add(pool.tag, objectPool);
         }
     }
-
+    // ---- Spawn Object in Pooling --------------------------------
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
         if (!poolDictionary.ContainsKey(tag))
         {
-            Debug.LogWarning("Pool with tag " + tag + " doesn't exist.");
+            Debug.LogWarning($"Pool with tag {tag} doesn't exist.");
             return null;
         }
 
-        if(poolDictionary[tag].Count == 0)
-        {
-            GameObject obj = Instantiate(pools.Find(x => x.tag == tag).prefab);
-            obj.SetActive(false);
-            poolDictionary[tag].Enqueue(obj);
-        }
-        GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+        GameObject objectToSpawn = GetPooledObject(tag);
 
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
@@ -62,8 +62,25 @@ public class ObjectPooler : MonoBehaviour
 
         return objectToSpawn;
     }
+    private GameObject GetPooledObject(string tag)
+    {
+        if (poolDictionary[tag].Count == 0)
+        {
+            GameObject obj = Instantiate(pools.Find(x => x.tag == tag).prefab);
+            obj.SetActive(false);
+            poolDictionary[tag].Enqueue(obj);
+        }
 
+        return poolDictionary[tag].Dequeue();
+    }
+
+    // ---- Return Object to Pooling --------------------------------
     public void ReturnToPool(string tag, GameObject objectToReturn)
+    {
+        ResetObjectState(objectToReturn);
+        poolDictionary[tag].Enqueue(objectToReturn);
+    }
+    private void ResetObjectState(GameObject objectToReturn)
     {
         Rigidbody rb = objectToReturn.GetComponent<Rigidbody>();
         if(rb != null) {
@@ -73,6 +90,5 @@ public class ObjectPooler : MonoBehaviour
         objectToReturn.transform.rotation = Quaternion.identity ;
         objectToReturn.transform.position = Vector3.zero ;
         objectToReturn.SetActive(false);
-        poolDictionary[tag].Enqueue(objectToReturn);
     }
 }

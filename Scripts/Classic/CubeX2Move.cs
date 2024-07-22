@@ -7,6 +7,7 @@ public class CubeX2Move : MonoBehaviour
     [SerializeField] private float speed = 2f;
     private float duration = 1f;
 
+    // Move to target position which is the position of the cube that the current cube nearest to
     public void moveToTarget(Vector3 targetPosition)
     {
         StartCoroutine(IMoveToTargetCoroutine(targetPosition));

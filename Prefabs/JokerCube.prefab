@@ -445,11 +445,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead621c60058bbc40aef6cf2fdf14255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Line: {fileID: 2771462424084667051}
+  line: {fileID: 2771462424084667051}
   pushForce: 20
-  cubeMove: {fileID: 2338653902831773352}
-  rb: {fileID: 0}
   isMainCube: 1
+  rb: {fileID: 0}
+  cubeMove: {fileID: 2338653902831773352}
 --- !u!114 &2338653902831773352
 MonoBehaviour:
   m_ObjectHideFlags: 0

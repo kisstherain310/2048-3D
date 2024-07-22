@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ListCube : MonoBehaviour
 {
-    public List<Cube> cubes;
+    [HideInInspector] public List<Cube> cubes;
     private void Awake()
     {
         cubes = new List<Cube>();
     }
+    // ----------------- Helper Method -----------------
     public void AddCube(Cube cube)
     {
         cubes.Add(cube);

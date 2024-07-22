@@ -17,6 +17,7 @@ public class CubeUI : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
+    // ---- Helper Method --------------------------------
     public void EditCube(int number){
         Color color = GetColor(number);
         SetColor(color);
@@ -35,9 +36,19 @@ public class CubeUI : MonoBehaviour
     private void SetNumber(int number)
     {
         this.number = number;
+        string Number;
+        if(10000 < number && number < 1000000){
+            Number = (number / 1000).ToString() + "K";
+        }else if(1000000 < number && number < 1000000000){
+            Number = (number / 1000000).ToString() + "M";
+        }else if(1000000000 < number){    
+            Number = (number / 1000000000).ToString() + "B";
+        }else{
+            Number = number.ToString();
+        }
         foreach (var t in text)
         {
-            t.text = number.ToString();
+            t.text = Number;
         }
     }
 }

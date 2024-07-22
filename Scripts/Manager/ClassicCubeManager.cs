@@ -8,37 +8,34 @@ public class ClassicCubeManager : MonoBehaviour
     private ListCube listCube;
     private Transform defaultCubeSpawnPoint;
 
-    public void getListCube(ListCube listCube)
+    public void Initialize(ListCube listCube, Transform defaultCubeSpawnPoint)
     {
         this.listCube = listCube;
-    }
-    public void getDefaultCubeSpawnPoint(Transform defaultCubeSpawnPoint)
-    {
         this.defaultCubeSpawnPoint = defaultCubeSpawnPoint;
     }
     public void InitClassicCube(){
-        Cube newCube = ObjectPooler.Instance.SpawnFromPool("ClassicCube", defaultCubeSpawnPoint.position, Quaternion.identity).GetComponent<Cube>();
-        int number = GenerateRandomNumber();    
-        newCube.SetMainCube(true);
-        newCube.SetActiveLine(true);
-        newCube.EditCube(number);
-
-        listCube.AddCube(newCube);
+        Cube newCube = CreateNewCube(defaultCubeSpawnPoint.position, true, GenerateRandomNumber());
     }
-
+    public Cube SpawnCubeX2(Vector3 spawnPoint, int number)
+    {
+        Cube newCube = CreateNewCube(spawnPoint, false, number);
+        return newCube;
+    }
+    // ----------------- Helper Method -----------------
     public void SpawnClassicCube()
     {
         StartCoroutine(ISpawnClassicCube());
     }
     IEnumerator ISpawnClassicCube(){
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         InitClassicCube();
     }
-    public Cube SpawnCubeX2(Vector3 spawnPoint, int number)
+    // ----------------- Create and Destroy -----------------
+    private Cube CreateNewCube(Vector3 position, bool condition, int number)
     {
-        Cube newCube = ObjectPooler.Instance.SpawnFromPool("ClassicCube", spawnPoint, Quaternion.identity).GetComponent<Cube>();  
-        newCube.SetMainCube(false);
-        newCube.SetActiveLine(false);
+        Cube newCube = ObjectPooler.Instance.SpawnFromPool("ClassicCube", position, Quaternion.identity).GetComponent<Cube>();
+        newCube.SetMainCube(condition);
+        newCube.SetActiveLine(condition);
         newCube.EditCube(number);
 
         listCube.AddCube(newCube);

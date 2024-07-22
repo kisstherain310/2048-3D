@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
     [SerializeField] private Transform defaultCubeSpawnPoint;
     [SerializeField] public ClassicCubeManager classicCubeManager;
     [SerializeField] public JokerCubeManager jokerCubeManager;
     [SerializeField] private ListCube listCube;
-    public static GameManager Instance;
 
     private void Awake()
     {
         Instance = this;
     }
+    // ----------------- Init -----------------
     private void Start()
     {
         InitClassicCubeManager();
@@ -21,16 +22,15 @@ public class GameManager : MonoBehaviour
     }
     private void InitClassicCubeManager()
     {
-        classicCubeManager.getDefaultCubeSpawnPoint(defaultCubeSpawnPoint);
-        classicCubeManager.getListCube(listCube);
+        classicCubeManager.Initialize(listCube, defaultCubeSpawnPoint);
         classicCubeManager.InitClassicCube();
     }
     private void InitJokerCubeManager()
     {
-        jokerCubeManager.getDefaultCubeSpawnPoint(defaultCubeSpawnPoint);
-        jokerCubeManager.getListCube(listCube);
+        jokerCubeManager.Initialize(listCube, defaultCubeSpawnPoint);
     }
 
+    // ----------------- Helper Method -----------------
     public Vector3 FindCubeNearest(Cube newCube)
     {
         float minDistance = Mathf.Infinity;

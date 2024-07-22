@@ -13,7 +13,8 @@ public class SpawnEffect : MonoBehaviour
     {
         originalScale = transform.localScale;
     }
-
+    // ---- Explore Effect --------------------------------
+    // Effect when the cube is Spawned
     public void ExploreEffect()
     {
         StartCoroutine(ScaleCoroutine());
@@ -22,7 +23,6 @@ public class SpawnEffect : MonoBehaviour
     private IEnumerator ScaleCoroutine()
     {
         float elapsedTime = 0f;
-        
         // Phóng to đối tượng
         while (elapsedTime < duration)
         {
@@ -30,12 +30,10 @@ public class SpawnEffect : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
         // Đảm bảo đối tượng đạt kích thước tối đa
         transform.localScale = originalScale * scaleMultiplier;
 
         elapsedTime = 0f;
-        
         // Thu nhỏ đối tượng về kích thước ban đầu
         while (elapsedTime < duration)
         {
@@ -43,7 +41,6 @@ public class SpawnEffect : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
         // Đảm bảo đối tượng trở về kích thước ban đầu
         transform.localScale = originalScale;
     }

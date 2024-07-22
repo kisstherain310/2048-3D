@@ -211,12 +211,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7
+  m_fontSize: 6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 2
-  m_fontSizeMax: 7
+  m_fontSizeMax: 6
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -383,12 +383,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7
+  m_fontSize: 6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 2
-  m_fontSizeMax: 7
+  m_fontSizeMax: 6
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -555,12 +555,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7
+  m_fontSize: 6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 2
-  m_fontSizeMax: 7
+  m_fontSizeMax: 6
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -727,12 +727,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7
+  m_fontSize: 6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 2
-  m_fontSizeMax: 7
+  m_fontSizeMax: 6
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -899,12 +899,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7
+  m_fontSize: 6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 2
-  m_fontSizeMax: 7
+  m_fontSizeMax: 6
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1071,12 +1071,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7
+  m_fontSize: 6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 2
-  m_fontSizeMax: 7
+  m_fontSizeMax: 6
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1321,6 +1321,24 @@ MonoBehaviour:
   - {r: 0.3529412, g: 0.039215688, b: 0.05490196, a: 1}
   - {r: 0.16862746, g: 0.7764706, b: 0.6392157, a: 1}
   - {r: 0.23529412, g: 0.10980392, b: 0.4862745, a: 1}
+  - {r: 0.4862745, g: 0.30448857, b: 0.10980391, a: 1}
+  - {r: 0.10980391, g: 0.4590916, b: 0.4862745, a: 1}
+  - {r: 0.10980391, g: 0.4862745, b: 0.3270739, a: 1}
+  - {r: 0.10980391, g: 0.15747254, b: 0.4862745, a: 1}
+  - {r: 0.10980391, g: 0.4862745, b: 0.14353436, a: 1}
+  - {r: 0.10980391, g: 0.4862745, b: 0.431558, a: 1}
+  - {r: 0.35224634, g: 0.42585698, b: 0.78113204, a: 1}
+  - {r: 0.4862745, g: 0.10980391, b: 0.29870233, a: 1}
+  - {r: 0.4862745, g: 0.16005343, b: 0.10980391, a: 1}
+  - {r: 0.4862745, g: 0.4455448, b: 0.10980391, a: 1}
+  - {r: 0.5067695, g: 0.93207544, b: 0.2444499, a: 1}
+  - {r: 0.10980391, g: 0.4862745, b: 0.4033177, a: 1}
+  - {r: 0.10980391, g: 0.2771429, b: 0.4862745, a: 1}
+  - {r: 0.4862745, g: 0.10980391, b: 0.4849486, a: 1}
+  - {r: 0.10980391, g: 0.32094455, b: 0.4862745, a: 1}
+  - {r: 0.4862745, g: 0.10980391, b: 0.33800718, a: 1}
+  - {r: 0.10980391, g: 0.3153249, b: 0.4862745, a: 1}
+  - {r: 0.20802066, g: 0.4862745, b: 0.10980391, a: 1}
   color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &6836382020382003889
 GameObject:
@@ -1514,15 +1532,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3de25735160ca45b91f087b5b1da3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  line: {fileID: 2056837500823891335}
+  pushForce: 25
+  isMainCube: 1
+  rb: {fileID: 0}
   cubeUI: {fileID: 6836342483201827033}
   cubeMove: {fileID: 2229036593801160047}
   cubeX2Move: {fileID: 3785949312432054607}
   spawnEffect: {fileID: 8439709706415541837}
-  Line: {fileID: 2056837500823891335}
-  pushForce: 25
-  rb: {fileID: 0}
   cubeNumber: 0
-  isMainCube: 1
   CubeID: 0
 --- !u!114 &968539170340219147
 MonoBehaviour:
