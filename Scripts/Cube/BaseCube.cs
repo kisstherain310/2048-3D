@@ -4,26 +4,35 @@ using UnityEngine;
 
 public abstract class BaseCube : MonoBehaviour
 {
+    public string poolTag;
     [SerializeField] public GameObject line;
     [SerializeField] private float pushForce = 20f;
     [SerializeField] public bool isMainCube = true;
-    [HideInInspector] public Rigidbody rb;
     [SerializeField] public InitEffect initEffect;
+    [HideInInspector] public Rigidbody rb;
+    [HideInInspector] public bool isActive = false;
 
+    protected abstract void SetPoolTag();
     protected abstract void InitCubeMove();
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        SetPoolTag();
         InitCubeMove();
     }
 
     // ---- Event System --------------------------------
     public virtual void handlePointerUp()
     {
+        SetActive(true);
         SetMainCube(false);
         SetActiveLine(false);
         ApplyPushForce();
         SpawnNewCube();
+    }
+    public void SetActive(bool isActive)
+    {
+        this.isActive = isActive;
     }
     public virtual void SetMainCube(bool isMainCube)
     {
@@ -39,6 +48,6 @@ public abstract class BaseCube : MonoBehaviour
     }
     private void SpawnNewCube(){
         GameManager.Instance.classicCubeManager.SpawnClassicCube();
-        GameManager.Instance.jokerCubeManager.SetJokerCubeNull();
+        GameManager.Instance.MainCubeIsNull();
     }
 }

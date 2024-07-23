@@ -1365,7 +1365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6830431338996363033
 Transform:
   m_ObjectHideFlags: 0
@@ -1538,6 +1538,7 @@ MonoBehaviour:
   isMainCube: 1
   rb: {fileID: 0}
   initEffect: {fileID: 8927541488411576309}
+  poolTag: ClassicCube
   cubeUI: {fileID: 6836342483201827033}
   cubeMove: {fileID: 2229036593801160047}
   cubeX2Move: {fileID: 3785949312432054607}

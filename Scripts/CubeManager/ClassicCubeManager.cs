@@ -13,7 +13,8 @@ public class ClassicCubeManager : MonoBehaviour
         this.listCube = listCube;
         this.defaultCubeSpawnPoint = defaultCubeSpawnPoint;
     }
-    public void InitClassicCube(){
+    public void InitClassicCube()
+    {
         Cube newCube = CreateNewCube(defaultCubeSpawnPoint.position, true, GenerateRandomNumber());
         newCube.initEffect.growEffect();
     }
@@ -27,8 +28,9 @@ public class ClassicCubeManager : MonoBehaviour
     {
         StartCoroutine(ISpawnClassicCube());
     }
-    IEnumerator ISpawnClassicCube(){
-        yield return new WaitForSeconds(0.5f);
+    IEnumerator ISpawnClassicCube()
+    {
+        yield return new WaitForSeconds(0.3f);
         InitClassicCube();
     }
     // ----------------- Create and Destroy -----------------
@@ -49,7 +51,8 @@ public class ClassicCubeManager : MonoBehaviour
         listCube.RemoveCube(cube);
     }
 
-    public int GenerateRandomNumber () {
-        return (int)Mathf.Pow (2, Random.Range (1, 5)) ;
+    public int GenerateRandomNumber()
+    {
+        return (int)Mathf.Pow(2, Random.Range(1, 5));
     }
 }

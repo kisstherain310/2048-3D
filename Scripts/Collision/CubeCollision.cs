@@ -15,17 +15,22 @@ public class CubeCollision : MonoBehaviour
     // ---- Collision --------------------------------
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("ClassicCube"))
+        string tag = collision.gameObject.tag;
+        switch (tag)
         {
-            HandleCubeCollision(collision);
-        }
-        else if (collision.gameObject.CompareTag("JokerCube"))
-        {
-            HandleJokerCubeCollision(collision);
+            case "ClassicCube":
+                HandleClassicCubeCollision(collision);
+                break;
+            case "JokerCube":
+                HandleJokerCubeCollision(collision);
+                break;
+            case "BombCube":
+                HandleBombCubeCollision(collision);
+                break;
         }
     }
     // ---- Handle Collision --------------------------------
-    private void HandleCubeCollision(Collision collision)
+    private void HandleClassicCubeCollision(Collision collision)
     {
         Cube otherCube = collision.gameObject.GetComponent<Cube>();
         if (otherCube != null && cube.CubeID > otherCube.CubeID)
@@ -43,7 +48,7 @@ public class CubeCollision : MonoBehaviour
     private void HandleJokerCubeCollision(Collision collision)
     {
         if(cube.isMainCube) {
-            DestroyCube(cube);
+            DestroyCube(cube); // Destroy main cube để kh có 2 cube trên vạch xuất phát cùng lúc
             return;
         };
         JokerCube jokerCube = collision.gameObject.GetComponent<JokerCube>();
@@ -55,6 +60,21 @@ public class CubeCollision : MonoBehaviour
             HandleCollision(collision, "JokerCube");            
         }
     }
+    private void HandleBombCubeCollision(Collision collision)
+    {
+        if(cube.isMainCube) {
+            DestroyCube(cube); // Destroy main cube để kh có 2 cube trên vạch xuất phát cùng lúc
+            return;
+        };
+        BombCube bombCube = collision.gameObject.GetComponent<BombCube>();
+        if (bombCube != null)
+        {
+            DestroyBombCube(bombCube);
+            DestroyCube(cube);
+
+            HandleCollision(collision);                 
+        }
+    }
     private void HandleCollision(Collision collision, string typeCube){
             Vector3 contactPoint = collision.contacts[0].point;
             Cube newCubeX2 = GameManager.Instance.classicCubeManager.SpawnCubeX2(contactPoint + Vector3.up * 0.8f, cube.cubeNumber * 2);
@@ -62,10 +82,16 @@ public class CubeCollision : MonoBehaviour
             ProcessNewCube(newCubeX2, contactPoint);
             explosionForce(contactPoint);
             if(typeCube == "ClassicCube") {
-                PlayFX(newCubeX2, contactPoint, 0, false);
-                PlayFX(newCubeX2, contactPoint, 1, true);
+                FXManager.Instance.PlayFX(contactPoint, newCubeX2.cubeUI.color, 0);
+
+                FXManager.Instance.GetFX(1).transform.SetParent(newCubeX2.transform); // FX[1] gắn vào cubeX2
+                FXManager.Instance.PlayFX(contactPoint, newCubeX2.cubeUI.color, 1);
             }
-            else if(typeCube == "JokerCube") PlayFX(newCubeX2, contactPoint, 2, false);
+            else if(typeCube == "JokerCube") FXManager.Instance.PlayFX(contactPoint, 2);
+    }
+    private void HandleCollision(Collision collision){
+            Vector3 contactPoint = collision.contacts[0].point;
+            FXManager.Instance.PlayFX(contactPoint, 3);
     }
     // ---- Helper Methods --------------------------------
     private void ProcessNewCube(Cube newCube, Vector3 contactPoint)
@@ -85,11 +111,6 @@ public class CubeCollision : MonoBehaviour
         Vector3 randomDirection = Vector3.one * randomValue;
         newCube.rb.AddTorque(randomDirection);
     }
-    private void PlayFX(Cube newCube, Vector3 contactPoint, int number, bool isSetParent)
-    {
-        if(isSetParent) FXManager.Instance.GetFX(number).transform.SetParent(newCube.transform);
-        FXManager.Instance.PlayCubeExplosionFX(contactPoint, newCube.cubeUI.color, number);
-    }
     private void explosionForce(Vector3 contactPoint)
     {
         Collider[] surroundedCubes = Physics.OverlapSphere(contactPoint, 1f);
@@ -101,6 +122,8 @@ public class CubeCollision : MonoBehaviour
                 coll.attachedRigidbody.AddExplosionForce(explosionForce, contactPoint, explosionRadius);
         }
     }
+
+    // ---- Destroy Cube --------------------------------
     private void DestroyCube(Cube cube)
     {
         GameManager.Instance.classicCubeManager.DestroyCube(cube);
@@ -108,5 +131,9 @@ public class CubeCollision : MonoBehaviour
     private void DestroyJokerCube(JokerCube cube)
     {
         GameManager.Instance.jokerCubeManager.DestroyJokerCube(cube);
+    }
+    private void DestroyBombCube(BombCube cube)
+    {
+        GameManager.Instance.bombCubeManager.DestroyBombCube(cube);
     }
 }

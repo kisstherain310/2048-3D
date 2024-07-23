@@ -5,10 +5,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    [SerializeField] private ListCube listCube;
     [SerializeField] private Transform defaultCubeSpawnPoint;
     [SerializeField] public ClassicCubeManager classicCubeManager;
     [SerializeField] public JokerCubeManager jokerCubeManager;
-    [SerializeField] private ListCube listCube;
+    [SerializeField] public BombCubeManager bombCubeManager;
+
+    [HideInInspector] public BaseCube mainCube = null;
 
     private void Awake()
     {
@@ -18,6 +21,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         InitClassicCubeManager();
+        InitBombCubeManager();
         InitJokerCubeManager();
     }
     private void InitClassicCubeManager()
@@ -29,8 +33,22 @@ public class GameManager : MonoBehaviour
     {
         jokerCubeManager.Initialize(listCube, defaultCubeSpawnPoint);
     }
+    private void InitBombCubeManager()
+    {
+        bombCubeManager.Initialize(listCube, defaultCubeSpawnPoint);
+    }
 
     // ----------------- Helper Method -----------------
+
+    public void DestroyMainCube()
+    {
+        ObjectPooler.Instance.ReturnToPool(mainCube.GetComponent<BaseCube>().poolTag, mainCube.gameObject);
+        MainCubeIsNull();
+    }
+    public void MainCubeIsNull()
+    {
+        mainCube = null;
+    }
     public Vector3 FindCubeNearest(Cube newCube)
     {
         float minDistance = Mathf.Infinity;

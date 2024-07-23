@@ -25,21 +25,22 @@ public class FXManager : MonoBehaviour {
         return cubeExplosionFX[number];
     }
     // ------- Play Cube Explosion FX ----------------
-    public void PlayCubeExplosionFX (Vector3 position, Color color, int number) {
-        EditPositionFX(number, position);
-        cubeExplosionFXMainModule[number].startColor = new ParticleSystem.MinMaxGradient (color) ;
-        cubeExplosionFX[number].Play () ;
+    public void PlayFX (Vector3 position, int index) {
+        EditPositionFX(index, position);
+        cubeExplosionFX[index].Play () ;
+    }
+    public void PlayFX (Vector3 position, Color color, int index) {
+        cubeExplosionFXMainModule[index].startColor = new ParticleSystem.MinMaxGradient (color) ;
+        EditPositionFX(index, position);
+        cubeExplosionFX[index].Play () ;
     }
     // ------- Edit Position FX ----------------
-    private void EditPositionFX (int number, Vector3 position) {
-        if (number == 0) {
-            cubeExplosionFX[number].transform.position = position + Vector3.up ;
+    private void EditPositionFX (int index, Vector3 position) {
+        if (index == 0 || index == 1 || index == 3) {
+            cubeExplosionFX[index].transform.position = position + Vector3.up ;
         }
-        else if (number == 1) {
-            cubeExplosionFX[number].transform.position = position + Vector3.up ;
-        }
-        else if (number == 2) {
-            cubeExplosionFX[number].transform.position = position + new Vector3 (0, 1, -2) ;
+        else if (index == 2) {
+            cubeExplosionFX[index].transform.position = position + new Vector3 (0, 1, -2) ;
         }
     }
 }
