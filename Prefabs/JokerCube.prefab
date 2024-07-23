@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 4747203774283510164}
   - component: {fileID: 6374971316895728656}
   - component: {fileID: 2338653902831773352}
+  - component: {fileID: 8070175933482106144}
   m_Layer: 0
   m_Name: JokerCube
   m_TagString: JokerCube
@@ -278,8 +279,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4661901907565612943}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.02301678, z: -0.17}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.04999993, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -449,6 +450,7 @@ MonoBehaviour:
   pushForce: 20
   isMainCube: 1
   rb: {fileID: 0}
+  initEffect: {fileID: 8070175933482106144}
   cubeMove: {fileID: 2338653902831773352}
 --- !u!114 &2338653902831773352
 MonoBehaviour:
@@ -463,6 +465,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxPosx: 1.63
+--- !u!114 &8070175933482106144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4661901907565612943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9371465d9757644afefb92f4a2eb7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.2
 --- !u!1 &4661940241222770383
 GameObject:
   m_ObjectHideFlags: 0

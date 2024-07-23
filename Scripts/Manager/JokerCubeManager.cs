@@ -19,13 +19,14 @@ public class JokerCubeManager : MonoBehaviour
         JokerCube newJokerCube = ObjectPooler.Instance.SpawnFromPool("JokerCube", defaultCubeSpawnPoint.position, Quaternion.identity).GetComponent<JokerCube>();   
         newJokerCube.SetMainCube(true);
         newJokerCube.SetActiveLine(true);
+        newJokerCube.initEffect.growEffect();
         jokerCube = newJokerCube;
     }
 
     // ----------------- Helper Method -----------------
     public void SpawnJokerCube()
     {
-        if(jokerCube != null) DestroyJokerCube(jokerCube);
+        if(jokerCube != null) return;
         foreach (Cube cube in listCube.cubes)
         {
             if (cube.isMainCube) {
@@ -39,6 +40,8 @@ public class JokerCubeManager : MonoBehaviour
     public void DestroyJokerCube(JokerCube jokerCube)
     {
         ObjectPooler.Instance.ReturnToPool("JokerCube", jokerCube.gameObject);
+    }
+    public void SetJokerCubeNull(){
         jokerCube = null;
     }
 }

@@ -8,40 +8,42 @@ public class SpawnEffect : MonoBehaviour
     [SerializeField] private float duration = 0.5f; // Thời gian phóng to và thu nhỏ
 
     private Vector3 originalScale;
-
-    void Start()
-    {
-        originalScale = transform.localScale;
-    }
+    private Coroutine scaleCoroutine;
     // ---- Explore Effect --------------------------------
     // Effect when the cube is Spawned
     public void ExploreEffect()
     {
-        StartCoroutine(ScaleCoroutine());
+        // Nếu có coroutine đang chạy, hủy nó
+        if (scaleCoroutine != null)
+        {
+            StopCoroutine(scaleCoroutine);
+        }
+        // Bắt đầu một coroutine mới
+        scaleCoroutine = StartCoroutine(ScaleCoroutine());
     }
 
     private IEnumerator ScaleCoroutine()
     {
+        originalScale = Vector3.one;
+        // ---- Phóng to đối tượng ----
         float elapsedTime = 0f;
-        // Phóng to đối tượng
         while (elapsedTime < duration)
         {
             transform.localScale = Vector3.Lerp(originalScale, originalScale * scaleMultiplier, (elapsedTime / duration));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        // Đảm bảo đối tượng đạt kích thước tối đa
         transform.localScale = originalScale * scaleMultiplier;
 
+        // ---- Thu nhỏ đối tượng về kích thước ban đầu ----
         elapsedTime = 0f;
-        // Thu nhỏ đối tượng về kích thước ban đầu
         while (elapsedTime < duration)
         {
             transform.localScale = Vector3.Lerp(originalScale * scaleMultiplier, originalScale, (elapsedTime / duration));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        // Đảm bảo đối tượng trở về kích thước ban đầu
-        transform.localScale = originalScale;
+        transform.localScale = Vector3.one;
+        scaleCoroutine = null;
     }
 }

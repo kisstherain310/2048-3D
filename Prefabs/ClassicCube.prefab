@@ -979,7 +979,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.04, y: 0.054}
+  m_AnchoredPosition: {x: -0.04, y: 0.024}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &3172894189850301418
@@ -1357,6 +1357,7 @@ GameObject:
   - component: {fileID: 2229036593801160047}
   - component: {fileID: 3785949312432054607}
   - component: {fileID: 8439709706415541837}
+  - component: {fileID: 8927541488411576309}
   - component: {fileID: 6591185440054136658}
   m_Layer: 0
   m_Name: ClassicCube
@@ -1373,7 +1374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6836382020382003889}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.02301678, z: -0.17}
+  m_LocalPosition: {x: 0, y: -0.04999993, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1536,6 +1537,7 @@ MonoBehaviour:
   pushForce: 25
   isMainCube: 1
   rb: {fileID: 0}
+  initEffect: {fileID: 8927541488411576309}
   cubeUI: {fileID: 6836342483201827033}
   cubeMove: {fileID: 2229036593801160047}
   cubeX2Move: {fileID: 3785949312432054607}
@@ -1596,6 +1598,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleMultiplier: 1.3
   duration: 0.3
+--- !u!114 &8927541488411576309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6836382020382003889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9371465d9757644afefb92f4a2eb7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.2
 --- !u!114 &6591185440054136658
 MonoBehaviour:
   m_ObjectHideFlags: 0

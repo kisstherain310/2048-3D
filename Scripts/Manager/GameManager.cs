@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     private void InitClassicCubeManager()
     {
         classicCubeManager.Initialize(listCube, defaultCubeSpawnPoint);
-        classicCubeManager.InitClassicCube();
+        classicCubeManager.SpawnClassicCube();
     }
     private void InitJokerCubeManager()
     {

@@ -35,29 +35,37 @@ public class CubeCollision : MonoBehaviour
                 DestroyCube(otherCube);
                 DestroyCube(cube);
 
-                HandleCollision(collision);
+                HandleCollision(collision, "ClassicCube");
             }
         }
     }
 
     private void HandleJokerCubeCollision(Collision collision)
     {
+        if(cube.isMainCube) {
+            DestroyCube(cube);
+            return;
+        };
         JokerCube jokerCube = collision.gameObject.GetComponent<JokerCube>();
         if (jokerCube != null)
         {
             DestroyJokerCube(jokerCube);
             DestroyCube(cube);
 
-            HandleCollision(collision);            
+            HandleCollision(collision, "JokerCube");            
         }
     }
-    private void HandleCollision(Collision collision){
+    private void HandleCollision(Collision collision, string typeCube){
             Vector3 contactPoint = collision.contacts[0].point;
             Cube newCubeX2 = GameManager.Instance.classicCubeManager.SpawnCubeX2(contactPoint + Vector3.up * 0.8f, cube.cubeNumber * 2);
 
             ProcessNewCube(newCubeX2, contactPoint);
-            PlayFX(newCubeX2, contactPoint);
             explosionForce(contactPoint);
+            if(typeCube == "ClassicCube") {
+                PlayFX(newCubeX2, contactPoint, 0, false);
+                PlayFX(newCubeX2, contactPoint, 1, true);
+            }
+            else if(typeCube == "JokerCube") PlayFX(newCubeX2, contactPoint, 2, false);
     }
     // ---- Helper Methods --------------------------------
     private void ProcessNewCube(Cube newCube, Vector3 contactPoint)
@@ -73,14 +81,14 @@ public class CubeCollision : MonoBehaviour
 
         // Random rotation
         float randomValue = Random.Range(-momen, momen);
-        if (randomValue < 30) randomValue = 20;
+        if (randomValue < 40) randomValue = 40;
         Vector3 randomDirection = Vector3.one * randomValue;
         newCube.rb.AddTorque(randomDirection);
     }
-    private void PlayFX(Cube newCube, Vector3 contactPoint)
+    private void PlayFX(Cube newCube, Vector3 contactPoint, int number, bool isSetParent)
     {
-        FXManager.Instance.GetFX().transform.SetParent(newCube.transform);
-        FXManager.Instance.PlayCubeExplosionFX(contactPoint, newCube.cubeUI.color);
+        if(isSetParent) FXManager.Instance.GetFX(number).transform.SetParent(newCube.transform);
+        FXManager.Instance.PlayCubeExplosionFX(contactPoint, newCube.cubeUI.color, number);
     }
     private void explosionForce(Vector3 contactPoint)
     {

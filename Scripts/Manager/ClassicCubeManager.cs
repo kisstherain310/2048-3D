@@ -15,6 +15,7 @@ public class ClassicCubeManager : MonoBehaviour
     }
     public void InitClassicCube(){
         Cube newCube = CreateNewCube(defaultCubeSpawnPoint.position, true, GenerateRandomNumber());
+        newCube.initEffect.growEffect();
     }
     public Cube SpawnCubeX2(Vector3 spawnPoint, int number)
     {

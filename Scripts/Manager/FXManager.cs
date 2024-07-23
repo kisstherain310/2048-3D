@@ -21,17 +21,25 @@ public class FXManager : MonoBehaviour {
     }
 
     //  ------- Get FX ----------------
-    public GameObject GetFX () {
-        return this.gameObject;
+    public ParticleSystem GetFX (int number) {
+        return cubeExplosionFX[number];
     }
     // ------- Play Cube Explosion FX ----------------
-    public void PlayCubeExplosionFX (Vector3 position, Color color) {
-        for (int i = 0; i < cubeExplosionFX.Length; i++)
-        {
-            cubeExplosionFXMainModule[i].startColor = new ParticleSystem.MinMaxGradient (color) ;
-            cubeExplosionFX[i].transform.position = position ;
-            cubeExplosionFX[i].Play () ;
+    public void PlayCubeExplosionFX (Vector3 position, Color color, int number) {
+        EditPositionFX(number, position);
+        cubeExplosionFXMainModule[number].startColor = new ParticleSystem.MinMaxGradient (color) ;
+        cubeExplosionFX[number].Play () ;
+    }
+    // ------- Edit Position FX ----------------
+    private void EditPositionFX (int number, Vector3 position) {
+        if (number == 0) {
+            cubeExplosionFX[number].transform.position = position + Vector3.up ;
         }
-        cubeExplosionFX[1].transform.position = position + Vector3.up;
+        else if (number == 1) {
+            cubeExplosionFX[number].transform.position = position + Vector3.up ;
+        }
+        else if (number == 2) {
+            cubeExplosionFX[number].transform.position = position + new Vector3 (0, 1, -2) ;
+        }
     }
 }

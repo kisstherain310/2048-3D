@@ -8,6 +8,7 @@ public abstract class BaseCube : MonoBehaviour
     [SerializeField] private float pushForce = 20f;
     [SerializeField] public bool isMainCube = true;
     [HideInInspector] public Rigidbody rb;
+    [SerializeField] public InitEffect initEffect;
 
     protected abstract void InitCubeMove();
     private void Awake()
@@ -38,5 +39,6 @@ public abstract class BaseCube : MonoBehaviour
     }
     private void SpawnNewCube(){
         GameManager.Instance.classicCubeManager.SpawnClassicCube();
+        GameManager.Instance.jokerCubeManager.SetJokerCubeNull();
     }
 }
