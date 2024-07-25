@@ -5,11 +5,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    [SerializeField] private ListCube listCube;
+    [SerializeField] public ListCube listCube;
+    [SerializeField] public Cube nextCube;
     [SerializeField] private Transform defaultCubeSpawnPoint;
     [SerializeField] public ClassicCubeManager classicCubeManager;
     [SerializeField] public JokerCubeManager jokerCubeManager;
     [SerializeField] public BombCubeManager bombCubeManager;
+    [SerializeField] public PointCubeManager pointCubeManager;
 
     [HideInInspector] public BaseCube mainCube = null;
 
@@ -23,6 +25,7 @@ public class GameManager : MonoBehaviour
         InitClassicCubeManager();
         InitBombCubeManager();
         InitJokerCubeManager();
+        SpawnNextCube();
     }
     private void InitClassicCubeManager()
     {
@@ -37,9 +40,15 @@ public class GameManager : MonoBehaviour
     {
         bombCubeManager.Initialize(listCube, defaultCubeSpawnPoint);
     }
-
+    public void SpawnNextCube(){
+        nextCube.EditCube(GenerateRandomNumber());
+        nextCube.GetComponent<NextCubeMove>().MoveEffect();
+    }
     // ----------------- Helper Method -----------------
-
+    public int GenerateRandomNumber()
+    {
+        return (int)Mathf.Pow(2, Random.Range(1, 7));
+    }
     public void DestroyMainCube()
     {
         ObjectPooler.Instance.ReturnToPool(mainCube.GetComponent<BaseCube>().poolTag, mainCube.gameObject);
@@ -48,23 +57,5 @@ public class GameManager : MonoBehaviour
     public void MainCubeIsNull()
     {
         mainCube = null;
-    }
-    public Vector3 FindCubeNearest(Cube newCube)
-    {
-        float minDistance = Mathf.Infinity;
-        Vector3 nearestCubePosition = Vector3.zero;
-        foreach (Cube cube in listCube.cubes)
-        {
-            if (cube.isMainCube) continue;
-            if(cube.cubeNumber == newCube.cubeNumber){
-                float distance = Vector3.Distance(cube.transform.position, newCube.transform.position);
-                if (distance < minDistance && distance > 0)
-                {
-                    minDistance = distance;
-                    nearestCubePosition = cube.transform.position;
-                }
-            }
-        }
-        return nearestCubePosition;
     }
 }

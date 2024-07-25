@@ -15,7 +15,9 @@ public class ClassicCubeManager : MonoBehaviour
     }
     public void InitClassicCube()
     {
-        Cube newCube = CreateNewCube(defaultCubeSpawnPoint.position, true, GenerateRandomNumber());
+        int number = 2;
+        if(GameManager.Instance.nextCube != null) number = GameManager.Instance.nextCube.cubeNumber;    
+        Cube newCube = CreateNewCube(defaultCubeSpawnPoint.position, true, number);
         newCube.initEffect.growEffect();
     }
     public Cube SpawnCubeX2(Vector3 spawnPoint, int number)
@@ -32,6 +34,7 @@ public class ClassicCubeManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         InitClassicCube();
+        GameManager.Instance.SpawnNextCube();
     }
     // ----------------- Create and Destroy -----------------
     private Cube CreateNewCube(Vector3 position, bool condition, int number)
@@ -49,10 +52,5 @@ public class ClassicCubeManager : MonoBehaviour
     {
         ObjectPooler.Instance.ReturnToPool("ClassicCube", cube.gameObject);
         listCube.RemoveCube(cube);
-    }
-
-    public int GenerateRandomNumber()
-    {
-        return (int)Mathf.Pow(2, Random.Range(1, 5));
     }
 }

@@ -23,4 +23,22 @@ public class ListCube : MonoBehaviour
             cubes.Remove(cubeToRemove);
         }
     }
+    public Vector3 FindCubeNearest(Cube newCube)
+    {
+        float minDistance = Mathf.Infinity;
+        Vector3 nearestCubePosition = Vector3.zero;
+        foreach (Cube cube in cubes)
+        {
+            if (cube.isMainCube) continue;
+            if(cube.cubeNumber == newCube.cubeNumber){
+                float distance = Vector3.Distance(cube.transform.position, newCube.transform.position);
+                if (distance < minDistance && distance > 0)
+                {
+                    minDistance = distance;
+                    nearestCubePosition = cube.transform.position;
+                }
+            }
+        }
+        return nearestCubePosition;
+    }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EventBombCube : MonoBehaviour
 {
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         GameManager.Instance.bombCubeManager.SpawnBombCube();
     }

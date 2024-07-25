@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CubeX2Move : MonoBehaviour
 {
-    [SerializeField] private float speed = 2f;
+    [SerializeField] private float speed = 1.5f;
     private float duration = 1f;
 
     // Move to target position which is the position of the cube that the current cube nearest to
@@ -21,7 +21,7 @@ public class CubeX2Move : MonoBehaviour
         float elapsedTime = 0f;
         while (elapsedTime < duration)
         {
-            transform.position += speed * Time.deltaTime * direction * 1.1f;
+            transform.position += speed * Time.deltaTime * direction * 0.7f;
             elapsedTime += Time.deltaTime;
             yield return null;
         }

@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3c0f8cec557c4a347b96837592a08c0b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.44705883}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7176471}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1353,11 +1353,11 @@ GameObject:
   - component: {fileID: 6884971680770279643}
   - component: {fileID: 6884971680770279644}
   - component: {fileID: 6884971680770279645}
-  - component: {fileID: 968539170340219147}
   - component: {fileID: 2229036593801160047}
   - component: {fileID: 3785949312432054607}
   - component: {fileID: 8439709706415541837}
   - component: {fileID: 8927541488411576309}
+  - component: {fileID: 3923611833580901416}
   - component: {fileID: 6591185440054136658}
   m_Layer: 0
   m_Name: ClassicCube
@@ -1365,7 +1365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6830431338996363033
 Transform:
   m_ObjectHideFlags: 0
@@ -1374,7 +1374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6836382020382003889}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.04999993, z: 0}
+  m_LocalPosition: {x: -0.88, y: -0.04999993, z: 10.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1442,7 +1442,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.3
+  m_Time: 0.25
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -1459,8 +1459,8 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.1522388
       - serializedVersion: 3
-        time: 0.9940653
-        value: 0
+        time: 1
+        value: 0.08960724
         inSlope: -1.1927284
         outSlope: -1.1927284
         tangentMode: 0
@@ -1472,33 +1472,33 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.97249913, b: 0.5424528, a: 0.53333336}
-      key1: {r: 1, g: 1, b: 1, a: 0}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
-      key6: {r: 0, g: 0, b: 0, a: 0}
-      key7: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 0.23529413, g: 0.23529413, b: 0.23529413, a: 0}
+      key1: {r: 0.8159287, g: 0.9547169, b: 0.67550725, a: 0.46666667}
+      key2: {r: 0.23529413, g: 0.23529413, b: 0.23529413, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0.53333336}
+      key4: {r: 0, g: 0, b: 0, a: 0.53333336}
+      key5: {r: 0, g: 0, b: 0, a: 1}
+      key6: {r: 0, g: 0, b: 0, a: 1}
+      key7: {r: 0, g: 0, b: 0, a: 0.53333336}
       ctime0: 0
-      ctime1: 65535
-      ctime2: 0
+      ctime1: 47808
+      ctime2: 65535
       ctime3: 0
       ctime4: 0
       ctime5: 0
       ctime6: 0
       ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
-      atime5: 0
-      atime6: 0
-      atime7: 0
+      atime0: 3855
+      atime1: 47224
+      atime2: 65535
+      atime3: 65535
+      atime4: 65535
+      atime5: 65535
+      atime6: 65535
+      atime7: 65535
       m_Mode: 0
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
+      m_NumColorKeys: 3
+      m_NumAlphaKeys: 3
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
@@ -1533,32 +1533,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3de25735160ca45b91f087b5b1da3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolTag: ClassicCube
   line: {fileID: 2056837500823891335}
   pushForce: 25
   isMainCube: 1
-  rb: {fileID: 0}
   initEffect: {fileID: 8927541488411576309}
-  poolTag: ClassicCube
+  rb: {fileID: 0}
+  isActive: 0
   cubeUI: {fileID: 6836342483201827033}
   cubeMove: {fileID: 2229036593801160047}
   cubeX2Move: {fileID: 3785949312432054607}
   spawnEffect: {fileID: 8439709706415541837}
   cubeNumber: 0
   CubeID: 0
---- !u!114 &968539170340219147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6836382020382003889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb9e6a100868a0449a3d230654a20bc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  momen: 20
-  jumpForce: 3
 --- !u!114 &2229036593801160047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1612,6 +1599,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 0.2
+--- !u!114 &3923611833580901416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6836382020382003889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0811fcdfee03fe741befd3bb235b0f07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6591185440054136658
 MonoBehaviour:
   m_ObjectHideFlags: 0
