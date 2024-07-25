@@ -7,4 +7,7 @@ public class GameState
 {
     public List<InforClassicCube> listCubes;
     public List<InforSpecialCube> listSpecialCubes;
+    public InforClassicCube nextCube;
+    public int score;
+    public int highScore;
 }

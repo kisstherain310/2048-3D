@@ -8,8 +8,8 @@ public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private Text  scoreUI;
     [SerializeField] private Text  highScoreUI;
-    private int score = 0;
-    private int highScore = -1;
+    public int score = 0;
+    public int highScore = -1;
     public void InitScore()
     {
         scoreUI.text = "0";
@@ -24,6 +24,13 @@ public class ScoreManager : MonoBehaviour
     {
         score += addScore;
         scoreUI.text = score.ToString();
+    }
+    public void SetScore(int score, int highScore)
+    {
+        this.score = score;
+        this.highScore = highScore;
+        scoreUI.text = score.ToString();
+        highScoreUI.text = "Tốt nhất: " + highScore.ToString();
     }
     public void SetHighScore()
     {

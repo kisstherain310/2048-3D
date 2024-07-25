@@ -6,18 +6,15 @@ public class NextCubeMove : MonoBehaviour
 {
     [SerializeField] private Vector3 startPosition;
     [SerializeField] private Vector3 endPosition;
-    private void Awake()
-    {
-        startPosition = transform.position + new Vector3(2, 0, 0);
-        endPosition = transform.position;
-        transform.position = startPosition; 
-    }
     public void MoveEffect()
     {
         StartCoroutine(MoveEffectCoroutine());
     }
     private IEnumerator MoveEffectCoroutine()
     {
+        startPosition = transform.position + new Vector3(2, 0, 0);
+        endPosition = transform.position;
+        transform.position = startPosition; 
         float elapsedTime = 0.0f;
         float totalTime = 0.5f;
 

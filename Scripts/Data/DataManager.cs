@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    private GameState gameState;
+    public GameState gameState;
     private List<InforClassicCube> inforClassicCubes;
     private List<InforSpecialCube> inforSpecialCubes;
+    private InforClassicCube nextCube;
+    private int score;
+    private int highScore;
     private List<BaseCube> dataCubes;
     public bool haveData = false;
     void Start()
@@ -41,9 +44,20 @@ public class DataManager : MonoBehaviour
                 inforSpecialCubes.Add(inforCube);
             }
         }
+        nextCube = new InforClassicCube{
+            number = GameManager.Instance.nextCube.cubeNumber,
+            position = GameManager.Instance.nextCube.transform.position,
+            rotation = GameManager.Instance.nextCube.transform.rotation,
+            isMainCube = GameManager.Instance.nextCube.isMainCube,
+        };
+        score = GameManager.Instance.scoreManager.score;
+        highScore = GameManager.Instance.scoreManager.highScore;
         GameState gameState = new GameState{
             listCubes = inforClassicCubes,
             listSpecialCubes = inforSpecialCubes,
+            nextCube = nextCube,
+            score = score,
+            highScore = highScore,
         };
 
         string json = JsonUtility.ToJson(gameState);
@@ -76,6 +90,7 @@ public class DataManager : MonoBehaviour
                 if(tag == "BombCube") GameManager.Instance.bombCubeManager.SpawnCube(tag, position, rotation, inforCube.isMainCube);
                 if(tag == "JokerCube") GameManager.Instance.jokerCubeManager.SpawnCube(tag, position, rotation, inforCube.isMainCube);
             }
+            GameManager.Instance.scoreManager.SetScore(gameState.score, gameState.highScore);
         }  else haveData = false;                       
     }
     

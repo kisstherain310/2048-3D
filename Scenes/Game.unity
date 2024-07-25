@@ -1337,6 +1337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubes: []
+  dataCubes: []
 --- !u!1 &435833734
 GameObject:
   m_ObjectHideFlags: 0
@@ -3287,6 +3288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreUI: {fileID: 970910299}
   highScoreUI: {fileID: 395120735}
+  score: 0
+  highScore: -1
 --- !u!4 &1352969720 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4063544116145379, guid: 894fd6f64b79776428e83bb2d743405e, type: 3}
@@ -3824,7 +3827,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameState:
     listCubes: []
-  inforListCubes: []
+    listSpecialCubes: []
+    nextCube:
+      number: 0
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 0}
+      isMainCube: 0
+    score: 0
+    highScore: 0
   haveData: 0
 --- !u!1 &1675576984
 GameObject:
@@ -56533,12 +56543,12 @@ MonoBehaviour:
   initEffect: {fileID: 2081066800340649086}
   rb: {fileID: 0}
   isActive: 0
+  CubeID: 0
   cubeUI: {fileID: 4168646402115920722}
   cubeMove: {fileID: 8785028004240762596}
   cubeX2Move: {fileID: 6021299796010721988}
   spawnEffect: {fileID: 1304442828258856390}
   cubeNumber: 0
-  CubeID: 0
 --- !u!23 &4146572014536103887
 MeshRenderer:
   m_ObjectHideFlags: 0
