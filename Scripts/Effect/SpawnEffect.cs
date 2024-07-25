@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SpawnEffect : MonoBehaviour
 {
-    [SerializeField] private float scaleMultiplier = 1.5f; // Hệ số phóng to
-    [SerializeField] private float duration = 0.5f; // Thời gian phóng to và thu nhỏ
+    [SerializeField] private float scaleMultiplier = 2.2f; // Hệ số phóng to
+    [SerializeField] private float duration = 0.1f; // Thời gian phóng to và thu nhỏ
 
     private Vector3 originalScale;
     private Coroutine scaleCoroutine;
@@ -24,6 +24,7 @@ public class SpawnEffect : MonoBehaviour
 
     private IEnumerator ScaleCoroutine()
     {
+        yield return new WaitForSeconds(0.25f);
         originalScale = Vector3.one;
         // ---- Phóng to đối tượng ----
         float elapsedTime = 0f;

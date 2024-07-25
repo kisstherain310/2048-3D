@@ -15,7 +15,7 @@ public class ClassicCollisionHandler : BaseCollisionHandler<Cube>
                 DestroyCube(cube);
 
                 Vector3 contactPoint = collision.contacts[0].point;
-                Cube newCubeX2 = GameManager.Instance.classicCubeManager.SpawnCubeX2(contactPoint + Vector3.up * 0.8f, cube.cubeNumber * 2);
+                Cube newCubeX2 = GameManager.Instance.classicCubeManager.SpawnCubeX2(contactPoint + Vector3.up * 1.1f, cube.cubeNumber * 2);
                 SpawnPointCube(newCubeX2.transform.position, cube.cubeNumber * 2, newCubeX2.cubeUI.color);
 
                 ProcessNewCube(newCubeX2, contactPoint);

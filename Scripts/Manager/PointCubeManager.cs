@@ -15,6 +15,8 @@ public class PointCubeManager : MonoBehaviour
         SetRace(position);
         cubePoint.pointMove.MoveEffect(pointStart, pointEnd);
         StartCoroutine(DestroyPointCubeAfterTime(cubePoint));
+
+        GameManager.Instance.scoreManager.AddScore(point);
     }
     private void SetRace(Vector3 position)
     {

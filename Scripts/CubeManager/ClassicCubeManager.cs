@@ -7,6 +7,8 @@ public class ClassicCubeManager : MonoBehaviour
 {
     private ListCube listCube;
     private Transform defaultCubeSpawnPoint;
+    public int lastNumber = 64;
+    public int lastOfLastNumber = 32;
 
     public void Initialize(ListCube listCube, Transform defaultCubeSpawnPoint)
     {

@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] public ListCube listCube;
     [SerializeField] public Cube nextCube;
     [SerializeField] private Transform defaultCubeSpawnPoint;
+    [SerializeField] public ScoreManager scoreManager;
+    [SerializeField] public VibrationManager vibrationManager;
     [SerializeField] public ClassicCubeManager classicCubeManager;
     [SerializeField] public JokerCubeManager jokerCubeManager;
     [SerializeField] public BombCubeManager bombCubeManager;
@@ -18,14 +20,20 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Application.targetFrameRate = 60;
     }
     // ----------------- Init -----------------
     private void Start()
     {
+        InitScoreManager();
         InitClassicCubeManager();
         InitBombCubeManager();
         InitJokerCubeManager();
         SpawnNextCube();
+    }
+    private void InitScoreManager()
+    {
+        scoreManager.InitScore();
     }
     private void InitClassicCubeManager()
     {
@@ -45,9 +53,16 @@ public class GameManager : MonoBehaviour
         nextCube.GetComponent<NextCubeMove>().MoveEffect();
     }
     // ----------------- Helper Method -----------------
-    public int GenerateRandomNumber()
+    public int GenerateRandomNumber() // 3 cube liên tiếp không được giống nhau
     {
-        return (int)Mathf.Pow(2, Random.Range(1, 7));
+        int number = (int)Mathf.Pow(2, Random.Range(1, 7));
+        while(number == classicCubeManager.lastNumber || number == classicCubeManager.lastOfLastNumber)
+        {
+            number = (int)Mathf.Pow(2, Random.Range(1, 7));
+        }
+        classicCubeManager.lastOfLastNumber = classicCubeManager.lastNumber;
+        classicCubeManager.lastNumber = number;
+        return number;
     }
     public void DestroyMainCube()
     {

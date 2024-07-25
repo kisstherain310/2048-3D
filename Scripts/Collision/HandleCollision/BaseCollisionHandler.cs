@@ -6,7 +6,8 @@ public abstract  class BaseCollisionHandler<T> : MonoBehaviour
 {
     protected Cube cube;
     protected float jumpForce = 3f;
-    protected float momen = 50f;
+    protected float momen = 90f;
+    protected float minMomen = 60f;
 
     protected virtual void Awake()
     {
@@ -26,10 +27,17 @@ public abstract  class BaseCollisionHandler<T> : MonoBehaviour
         if(targetMove != Vector3.zero) newCube.cubeX2Move.moveToTarget(targetMove);
 
         // Random rotation
-        float randomValue = Random.Range(-momen, momen);
-        if (randomValue < 40) randomValue = 40;
-        Vector3 randomDirection = Vector3.one * randomValue;
+        float randomValue = Random.Range(0, momen);
+        if (randomValue < minMomen) randomValue = minMomen;
+        Vector3 randomDirection = GetRandomVector3() * randomValue;
         newCube.rb.AddTorque(randomDirection);
+    }
+    private Vector3 GetRandomVector3()
+    {
+        float x = Random.Range(-1f, 1f);
+        float y = Random.Range(-1f, 1f);
+        float z = Random.Range(-1f, 1f);
+        return new Vector3(x, y, z);
     }
     protected void SpawnPointCube(Vector3 position, int point, Color color)
     {
