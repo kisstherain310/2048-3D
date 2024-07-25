@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    public GameState gameState;
-    public List<InforListCube> inforListCubes;
-    private List<Cube> cubes;
+    private GameState gameState;
+    private List<InforClassicCube> inforClassicCubes;
+    private List<InforSpecialCube> inforSpecialCubes;
+    private List<BaseCube> dataCubes;
     public bool haveData = false;
     void Start()
     {
@@ -18,19 +19,31 @@ public class DataManager : MonoBehaviour
         SaveGameState();
     }
     private void SaveGameState(){
-        inforListCubes = new List<InforListCube>();
-        cubes = GameManager.Instance.listCube.cubes;
-        foreach(Cube cube in cubes){
-            InforListCube inforListCube = new InforListCube{
-                number = cube.cubeNumber,
-                position = cube.transform.position,
-                rotation = cube.transform.rotation,
-                isMainCube = cube.isMainCube,
-            };
-            inforListCubes.Add(inforListCube);
+        inforClassicCubes = new List<InforClassicCube>();
+        inforSpecialCubes = new List<InforSpecialCube>();
+        dataCubes = GameManager.Instance.listCube.dataCubes;
+        foreach(BaseCube cube in dataCubes){
+            if(cube.poolTag == "ClassicCube"){
+                InforClassicCube inforCube = new InforClassicCube{
+                    number = cube.GetComponent<Cube>().cubeNumber,
+                    position = cube.transform.position,
+                    rotation = cube.transform.rotation,
+                    isMainCube = cube.isMainCube,
+                };
+                inforClassicCubes.Add(inforCube);
+            } else {
+                InforSpecialCube inforCube = new InforSpecialCube{
+                    tag = cube.poolTag,
+                    position = cube.transform.position,
+                    rotation = cube.transform.rotation,
+                    isMainCube = cube.isMainCube,
+                };
+                inforSpecialCubes.Add(inforCube);
+            }
         }
         GameState gameState = new GameState{
-            listCubes = inforListCubes
+            listCubes = inforClassicCubes,
+            listSpecialCubes = inforSpecialCubes,
         };
 
         string json = JsonUtility.ToJson(gameState);
@@ -51,11 +64,17 @@ public class DataManager : MonoBehaviour
                 haveData = false;
                 return;
             }
-            foreach(InforListCube inforListCube in gameState.listCubes){
-                Vector3 position = Utilities.toVector3(inforListCube.position.x, inforListCube.position.y, inforListCube.position.z);
-                Quaternion rotation = Utilities.toQuaternion(inforListCube.rotation.x, inforListCube.rotation.y, inforListCube.rotation.z, inforListCube.rotation.w);
-                Debug.Log(inforListCube.isMainCube);
-                GameManager.Instance.classicCubeManager.SpawnCube(inforListCube.number, position, rotation, inforListCube.isMainCube);
+            foreach(InforClassicCube inforCube in gameState.listCubes){
+                Vector3 position = Utilities.toVector3(inforCube.position.x, inforCube.position.y, inforCube.position.z);
+                Quaternion rotation = Utilities.toQuaternion(inforCube.rotation.x, inforCube.rotation.y, inforCube.rotation.z, inforCube.rotation.w);
+                GameManager.Instance.classicCubeManager.SpawnCube(inforCube.number, position, rotation, inforCube.isMainCube);
+            }
+            foreach(InforSpecialCube inforCube in gameState.listSpecialCubes){
+                string tag = inforCube.tag;
+                Vector3 position = Utilities.toVector3(inforCube.position.x, inforCube.position.y, inforCube.position.z);
+                Quaternion rotation = Utilities.toQuaternion(inforCube.rotation.x, inforCube.rotation.y, inforCube.rotation.z, inforCube.rotation.w);
+                if(tag == "BombCube") GameManager.Instance.bombCubeManager.SpawnCube(tag, position, rotation, inforCube.isMainCube);
+                if(tag == "JokerCube") GameManager.Instance.jokerCubeManager.SpawnCube(tag, position, rotation, inforCube.isMainCube);
             }
         }  else haveData = false;                       
     }

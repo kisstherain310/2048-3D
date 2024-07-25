@@ -22,6 +22,7 @@ public abstract class CubeManagerBase<T> : MonoBehaviour where T : MonoBehaviour
         newCube.GetComponent<BaseCube>().SetActiveLine(true);
         newCube.GetComponent<BaseCube>().initEffect.growEffect();
         GameManager.Instance.mainCube = newCube.GetComponent<BaseCube>();
+        GameManager.Instance.listCube.AddDataCube(newCube.GetComponent<BaseCube>());
     }
 
     // ----------------- Helper Method -----------------
@@ -40,9 +41,18 @@ public abstract class CubeManagerBase<T> : MonoBehaviour where T : MonoBehaviour
         }
         InitCube(poolTag);
     }
+    public void SpawnCube(string tag , Vector3 position, Quaternion rotation, bool isMainCube)
+    {
+        T newCube = ObjectPooler.Instance.SpawnFromPool(tag, position, rotation).GetComponent<T>();
+        newCube.GetComponent<BaseCube>().SetMainCube(isMainCube);
+        if(isMainCube) newCube.GetComponent<BaseCube>().SetActiveLine(true);
+        else newCube.GetComponent<BaseCube>().SetActiveLine(false);
+        GameManager.Instance.listCube.AddDataCube(newCube.GetComponent<BaseCube>());
+    }
 
     public void DestroyCube(T cube)
     {
         ObjectPooler.Instance.ReturnToPool(cube.GetComponent<BaseCube>().poolTag, cube.gameObject);
+        GameManager.Instance.listCube.RemoveDataCube(cube.GetComponent<BaseCube>());
     }
 }

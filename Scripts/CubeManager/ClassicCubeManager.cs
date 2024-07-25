@@ -47,6 +47,7 @@ public class ClassicCubeManager : MonoBehaviour
         newCube.EditCube(number);
 
         listCube.AddCube(newCube);
+        listCube.AddDataCube(newCube);
         return newCube;
     }
 
@@ -59,11 +60,13 @@ public class ClassicCubeManager : MonoBehaviour
         newCube.EditCube(number);
 
         listCube.AddCube(newCube);
+        listCube.AddDataCube(newCube);
     }
 
     public void DestroyCube(Cube cube)
     {
         ObjectPooler.Instance.ReturnToPool("ClassicCube", cube.gameObject);
         listCube.RemoveCube(cube);
+        listCube.RemoveDataCube(cube);
     }
 }

@@ -5,22 +5,36 @@ using UnityEngine;
 public class ListCube : MonoBehaviour
 {
     [HideInInspector] public List<Cube> cubes;
+    [HideInInspector] public List<BaseCube> dataCubes;
     private void Awake()
     {
         cubes = new List<Cube>();
     }
     // ----------------- Helper Method -----------------
+    // ----------------- Add  -----------------
     public void AddCube(Cube cube)
     {
         cubes.Add(cube);
     }
-
+    public void AddDataCube(BaseCube cube)
+    {
+        dataCubes.Add(cube);
+    }
+    // ----------------- Remove  -----------------
     public void RemoveCube(Cube cube)
     {
         Cube cubeToRemove = cubes.Find(c => c.cubeUI == cube.cubeUI);
         if (cubeToRemove != null)
         {
             cubes.Remove(cubeToRemove);
+        }
+    }
+    public void RemoveDataCube(BaseCube cube)
+    {
+        BaseCube cubeToRemove = dataCubes.Find(c => c == cube);
+        if (cubeToRemove != null)
+        {
+            dataCubes.Remove(cubeToRemove);
         }
     }
     public Vector3 FindCubeNearest(Cube newCube)

@@ -5,7 +5,6 @@ using UnityEngine;
 public class BombCube : BaseCube
 {
     [SerializeField] private BombMove cubeMove;
-
     protected override void SetPoolTag()
     {
         poolTag = "BombCube";

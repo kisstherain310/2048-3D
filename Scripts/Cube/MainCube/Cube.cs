@@ -10,7 +10,6 @@ public class Cube : BaseCube
     [SerializeField] public CubeX2Move cubeX2Move;
     [SerializeField] public SpawnEffect spawnEffect;
     [HideInInspector] public int cubeNumber;   
-    [HideInInspector] public int CubeID;
     protected override void SetPoolTag()
     {
         poolTag = "ClassicCube";

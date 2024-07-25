@@ -5,5 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class GameState
 {
-    public List<InforListCube> listCubes;
+    public List<InforClassicCube> listCubes;
+    public List<InforSpecialCube> listSpecialCubes;
 }

@@ -11,6 +11,7 @@ public abstract class BaseCube : MonoBehaviour
     [SerializeField] public InitEffect initEffect;
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public bool isActive = false;
+    [HideInInspector] public int CubeID;
 
     protected abstract void SetPoolTag();
     protected abstract void InitCubeMove();
@@ -29,6 +30,10 @@ public abstract class BaseCube : MonoBehaviour
         SetActiveLine(false);
         ApplyPushForce();
         SpawnNewCube();
+    }
+    public int GetCubeID()
+    {
+        return  CubeID;
     }
     public void SetActive(bool isActive)
     {
