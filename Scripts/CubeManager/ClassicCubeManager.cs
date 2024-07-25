@@ -50,6 +50,17 @@ public class ClassicCubeManager : MonoBehaviour
         return newCube;
     }
 
+    public void SpawnCube(int number, Vector3 position, Quaternion rotation, bool isMainCube)
+    {
+        Cube newCube = ObjectPooler.Instance.SpawnFromPool("ClassicCube", position, rotation).GetComponent<Cube>();
+        newCube.SetMainCube(isMainCube);
+        if(isMainCube) newCube.SetActiveLine(true);
+        else newCube.SetActiveLine(false);
+        newCube.EditCube(number);
+
+        listCube.AddCube(newCube);
+    }
+
     public void DestroyCube(Cube cube)
     {
         ObjectPooler.Instance.ReturnToPool("ClassicCube", cube.gameObject);

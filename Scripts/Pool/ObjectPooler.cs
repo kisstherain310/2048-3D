@@ -20,12 +20,9 @@ public class ObjectPooler : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(gameObject);
-    }
-
-    void Start()
-    {
         InitializePools();
     }
+
     // ---- Initialize Pool --------------------------------
     private void InitializePools()
     {

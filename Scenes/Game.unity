@@ -1615,7 +1615,7 @@ MonoBehaviour:
   pools:
   - tag: ClassicCube
     prefab: {fileID: 6836382020382003889, guid: b4450cb7a6c86744cbc6d1e914e15bef, type: 3}
-    size: 0
+    size: 10
   - tag: JokerCube
     prefab: {fileID: 4661901907565612943, guid: 864745063f1003149a4f200a91383642, type: 3}
     size: 0
@@ -3214,6 +3214,7 @@ Transform:
   - {fileID: 744381197}
   - {fileID: 409980478}
   - {fileID: 435833735}
+  - {fileID: 1631896464}
   m_Father: {fileID: 1675576985}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3238,6 +3239,7 @@ MonoBehaviour:
   jokerCubeManager: {fileID: 1866703455}
   bombCubeManager: {fileID: 352465423}
   pointCubeManager: {fileID: 1034457624}
+  dataManager: {fileID: 1631896465}
   mainCube: {fileID: 0}
 --- !u!1 &1329256297
 GameObject:
@@ -3776,6 +3778,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600812346}
   m_CullTransparentMesh: 1
+--- !u!1 &1631896463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1631896464}
+  - component: {fileID: 1631896465}
+  m_Layer: 0
+  m_Name: Data
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1631896464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631896463}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1314912089}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1631896465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631896463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1250b8d9c695b484abedc8c6ce54bd6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameState:
+    listCubes: []
+  inforListCubes: []
+  haveData: 0
 --- !u!1 &1675576984
 GameObject:
   m_ObjectHideFlags: 0

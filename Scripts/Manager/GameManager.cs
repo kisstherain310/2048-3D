@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public JokerCubeManager jokerCubeManager;
     [SerializeField] public BombCubeManager bombCubeManager;
     [SerializeField] public PointCubeManager pointCubeManager;
+    [SerializeField] public DataManager dataManager;
 
     [HideInInspector] public BaseCube mainCube = null;
 
@@ -21,15 +22,20 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         Application.targetFrameRate = 60;
+        InitComponents();
+    }
+    private void Start()
+    {
+        if (!dataManager.haveData) classicCubeManager.SpawnClassicCube();
+        SpawnNextCube();
     }
     // ----------------- Init -----------------
-    private void Start()
+    private void InitComponents()
     {
         InitScoreManager();
         InitClassicCubeManager();
         InitBombCubeManager();
         InitJokerCubeManager();
-        SpawnNextCube();
     }
     private void InitScoreManager()
     {
@@ -38,7 +44,6 @@ public class GameManager : MonoBehaviour
     private void InitClassicCubeManager()
     {
         classicCubeManager.Initialize(listCube, defaultCubeSpawnPoint);
-        classicCubeManager.SpawnClassicCube();
     }
     private void InitJokerCubeManager()
     {
@@ -48,7 +53,8 @@ public class GameManager : MonoBehaviour
     {
         bombCubeManager.Initialize(listCube, defaultCubeSpawnPoint);
     }
-    public void SpawnNextCube(){
+    public void SpawnNextCube()
+    {
         nextCube.EditCube(GenerateRandomNumber());
         nextCube.GetComponent<NextCubeMove>().MoveEffect();
     }
@@ -56,7 +62,7 @@ public class GameManager : MonoBehaviour
     public int GenerateRandomNumber() // 3 cube liên tiếp không được giống nhau
     {
         int number = (int)Mathf.Pow(2, Random.Range(1, 7));
-        while(number == classicCubeManager.lastNumber || number == classicCubeManager.lastOfLastNumber)
+        while (number == classicCubeManager.lastNumber || number == classicCubeManager.lastOfLastNumber)
         {
             number = (int)Mathf.Pow(2, Random.Range(1, 7));
         }
