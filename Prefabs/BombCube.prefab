@@ -109,14 +109,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8696501309424031618}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 50}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8693585355899429046}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90.00001, y: -0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: -0, z: 0}
 --- !u!33 &8702038992410216952
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -195,7 +195,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0.7069834, z: 0.7072302, w: 0}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 50}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8699668950878095778}
   m_Father: {fileID: 8693585355899429046}
@@ -7358,7 +7358,7 @@ Transform:
   m_GameObject: {fileID: 8697432485662141911}
   m_LocalRotation: {x: 0.00000008940697, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.007, y: 0.0053999973, z: 0.0296}
-  m_LocalScale: {x: 0.02, y: 0.020000005, z: 0.020000005}
+  m_LocalScale: {x: 0.04, y: 0.020000005, z: 0.020000005}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8693433917453810075}
@@ -9708,9 +9708,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8697439639281752576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.04999993, z: 2.22}
+  m_LocalPosition: {x: 0, y: -0.04999993, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8693474311326744837}
   - {fileID: 8693548344469706014}
@@ -9875,6 +9875,7 @@ MonoBehaviour:
   initEffect: {fileID: 702502470010083584}
   rb: {fileID: 0}
   isActive: 0
+  CubeID: 0
   cubeMove: {fileID: 7093651548044934333}
 --- !u!114 &7093651548044934333
 MonoBehaviour:

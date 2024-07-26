@@ -17,6 +17,7 @@ public class JokerCollisionHandler : BaseCollisionHandler<JokerCube>
         JokerCube jokerCube = collision.gameObject.GetComponent<JokerCube>();
         if (jokerCube != null)
         {
+            VibrationManagerX.Vibrate();
             DestroyCube(jokerCube);
             DestroyCube(cube);
 

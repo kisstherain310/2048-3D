@@ -453,6 +453,7 @@ MonoBehaviour:
   initEffect: {fileID: 8070175933482106144}
   rb: {fileID: 0}
   isActive: 0
+  CubeID: 0
   cubeMove: {fileID: 2338653902831773352}
 --- !u!114 &2338653902831773352
 MonoBehaviour:
@@ -920,14 +921,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4662242629098347013}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4663575778391899221}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90.00001, y: -0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: -0, z: 0}
 --- !u!33 &4665883287858643652
 MeshFilter:
   m_ObjectHideFlags: 0

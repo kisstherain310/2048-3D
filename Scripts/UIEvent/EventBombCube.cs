@@ -7,6 +7,7 @@ public class EventBombCube : MonoBehaviour
 {
     public void OnMouseDown()
     {
+        VibrationManagerX.Vibrate();
         GameManager.Instance.bombCubeManager.SpawnBombCube();
     }
 }

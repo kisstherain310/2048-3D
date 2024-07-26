@@ -11,6 +11,7 @@ public class ClassicCollisionHandler : BaseCollisionHandler<Cube>
         {
             if (cube.cubeNumber == otherCube.cubeNumber)
             {
+                VibrationManagerX.Vibrate();
                 DestroyCube(otherCube);
                 DestroyCube(cube);
 

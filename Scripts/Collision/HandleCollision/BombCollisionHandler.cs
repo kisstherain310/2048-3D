@@ -17,6 +17,7 @@ public class BombCollisionHandler : BaseCollisionHandler<BombCube>
         BombCube bombCube = collision.gameObject.GetComponent<BombCube>();
         if (bombCube != null)
         {
+            VibrationManagerX.Vibrate();
             SpawnPointCube(cube.transform.position, cube.cubeNumber, cube.cubeUI.color);
             DestroyCube(bombCube);
             DestroyCube(cube);

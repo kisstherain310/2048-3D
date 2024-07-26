@@ -54,6 +54,6 @@ public abstract class BaseCube : MonoBehaviour
     private void SpawnNewCube(){
         GameManager.Instance.classicCubeManager.SpawnClassicCube();
         GameManager.Instance.MainCubeIsNull();
-        GameManager.Instance.vibrationManager.VibratePhone();
+        VibrationManagerX.Vibrate();
     }
 }

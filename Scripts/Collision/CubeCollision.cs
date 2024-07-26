@@ -17,7 +17,6 @@ public class CubeCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        GameManager.Instance.vibrationManager.VibratePhone();
         string tag = collision.gameObject.tag;
         switch (tag)
         {

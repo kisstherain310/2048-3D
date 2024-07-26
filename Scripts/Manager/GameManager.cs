@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Cube nextCube;
     [SerializeField] private Transform defaultCubeSpawnPoint;
     [SerializeField] public ScoreManager scoreManager;
-    [SerializeField] public VibrationManager vibrationManager;
     [SerializeField] public ClassicCubeManager classicCubeManager;
     [SerializeField] public JokerCubeManager jokerCubeManager;
     [SerializeField] public BombCubeManager bombCubeManager;

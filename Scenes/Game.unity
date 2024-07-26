@@ -1616,7 +1616,7 @@ MonoBehaviour:
   pools:
   - tag: ClassicCube
     prefab: {fileID: 6836382020382003889, guid: b4450cb7a6c86744cbc6d1e914e15bef, type: 3}
-    size: 10
+    size: 0
   - tag: JokerCube
     prefab: {fileID: 4661901907565612943, guid: 864745063f1003149a4f200a91383642, type: 3}
     size: 0
@@ -3289,7 +3289,7 @@ MonoBehaviour:
   scoreUI: {fileID: 970910299}
   highScoreUI: {fileID: 395120735}
   score: 0
-  highScore: -1
+  highScore: 2048
 --- !u!4 &1352969720 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4063544116145379, guid: 894fd6f64b79776428e83bb2d743405e, type: 3}
@@ -56677,7 +56677,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4168685836281368890}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.502, y: 0.142, z: -2.366}
+  m_LocalPosition: {x: 1.495, y: 0.142, z: -2.366}
   m_LocalScale: {x: 0.55, y: 0.48000002, z: 0.48000002}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -56782,13 +56782,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4165549870241721490}
   - component: {fileID: 4074004867735325526}
-  - component: {fileID: 7671144923291347584}
   - component: {fileID: 8785028004240762596}
   - component: {fileID: 6021299796010721988}
   - component: {fileID: 1304442828258856390}
   - component: {fileID: 2081066800340649086}
   - component: {fileID: 8785028004240762597}
-  - component: {fileID: 4358649532303215833}
   m_Layer: 0
   m_Name: NextCube
   m_TagString: ClassicCube
@@ -56814,19 +56812,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &4358649532303215833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4168685836281368890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates: []
 --- !u!4 &4404561438226091996
 Transform:
   m_ObjectHideFlags: 0
@@ -64843,21 +64828,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.7
---- !u!114 &7671144923291347584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4168685836281368890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb9e6a100868a0449a3d230654a20bc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  momen: 20
-  jumpForce: 3
-  cube: {fileID: 0}
 --- !u!114 &8785028004240762596
 MonoBehaviour:
   m_ObjectHideFlags: 0

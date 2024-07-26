@@ -70,26 +70,30 @@ public class DataManager : MonoBehaviour
         };
 
         string json = JsonUtility.ToJson(gameState);
-        string path = "data.json";
-        // File.WriteAllText(Application.persistentDataPath + "/gameState.json", json);
-        System.IO.File.WriteAllText(path, json);
+        PlayerPrefs.SetString("GameState", json);
+        PlayerPrefs.Save();
+        // DeleteAllData();
     }
+    private void DeleteAllData()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+    }
+
     public bool CheckData()
     {
-        string path = "data.json";
-        return File.Exists(path);
+        return PlayerPrefs.HasKey("GameState");
     }
+
     private void LoadGameState()
     {
-        // string path = Application.persistentDataPath + "/gameState.json";
-        string path = "data.json";
-        if (File.Exists(path))
+        if (PlayerPrefs.HasKey("GameState"))
         {
-            Debug.Log("Load data");
             haveData = true;
-            string json = System.IO.File.ReadAllText(path);
+            string json = PlayerPrefs.GetString("GameState");
             gameState = JsonUtility.FromJson<GameState>(json);
-            if(gameState.listCubes == null && gameState.listSpecialCubes == null) {
+            if (gameState.listCubes == null && gameState.listSpecialCubes == null)
+            {
                 haveData = false;
                 return;
             }
@@ -112,5 +116,6 @@ public class DataManager : MonoBehaviour
         }
         else haveData = false;
     }
+
 
 }

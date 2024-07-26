@@ -2,15 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VibrationManager : MonoBehaviour
+public static class VibrationManagerX
 {
-    public void VibratePhone()
+    private static AndroidJavaClass unityPlayer;
+    private static AndroidJavaObject currentActivity;
+    private static AndroidJavaObject vibrator;
+
+    public static void Vibrate(long milliseconds = 60)
     {
-// // Kiểm tra nếu plugin đã được cài đặt và có sẵn
-//         #if UNITY_ANDROID
-//             Vibration.Vibrate((int)(duration * 1000)); // Chuyển đổi giây thành mili giây
-//         #elif UNITY_IOS
-//             Vibration.VibratePeekAndPop();
-//         #endif
+        if (IsAndroid())
+        {
+            if (vibrator == null)
+            {
+                unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+                currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+                vibrator = currentActivity.Call<AndroidJavaObject>("getSystemService", "vibrator");
+            }
+            vibrator.Call("vibrate", milliseconds);
+        }
+        else
+        {
+            Handheld.Vibrate();
+        }
+    }
+
+    public static bool IsAndroid()
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        return true;
+#else
+        return false;
+#endif
     }
 }
