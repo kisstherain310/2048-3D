@@ -8,8 +8,8 @@ public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private Text  scoreUI;
     [SerializeField] private Text  highScoreUI;
-    public int score = 0;
-    public int highScore = -1;
+    [HideInInspector] public int score = 0;
+    [HideInInspector] public int highScore = 2048;
     public void InitScore()
     {
         scoreUI.text = "0";

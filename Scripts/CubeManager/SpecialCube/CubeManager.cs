@@ -26,11 +26,14 @@ public abstract class CubeManagerBase<T> : MonoBehaviour where T : MonoBehaviour
     }
 
     // ----------------- Helper Method -----------------
-    public void SpawnCube(string poolTag)
-    {
+    public void CheckNull(){
         if (GameManager.Instance.mainCube != null) { // Xóa mainCube cũ ở vị trí xuất phát 
             GameManager.Instance.DestroyMainCube();
         }
+    }
+    public void SpawnCube(string poolTag)
+    {
+        CheckNull();
         foreach (Cube cube in listCube.cubes)
         {
             if (cube.isMainCube)
@@ -43,9 +46,13 @@ public abstract class CubeManagerBase<T> : MonoBehaviour where T : MonoBehaviour
     }
     public void SpawnCube(string tag , Vector3 position, Quaternion rotation, bool isMainCube)
     {
+        CheckNull();
         T newCube = ObjectPooler.Instance.SpawnFromPool(tag, position, rotation).GetComponent<T>();
         newCube.GetComponent<BaseCube>().SetMainCube(isMainCube);
-        if(isMainCube) newCube.GetComponent<BaseCube>().SetActiveLine(true);
+        if(isMainCube){
+            newCube.GetComponent<BaseCube>().SetActiveLine(true);
+            GameManager.Instance.mainCube = newCube.GetComponent<BaseCube>();
+        }
         else newCube.GetComponent<BaseCube>().SetActiveLine(false);
         GameManager.Instance.listCube.AddDataCube(newCube.GetComponent<BaseCube>());
     }

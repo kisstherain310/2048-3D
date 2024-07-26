@@ -3835,7 +3835,6 @@ MonoBehaviour:
       isMainCube: 0
     score: 0
     highScore: 0
-  haveData: 0
 --- !u!1 &1675576984
 GameObject:
   m_ObjectHideFlags: 0

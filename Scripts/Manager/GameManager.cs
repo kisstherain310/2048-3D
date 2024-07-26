@@ -26,11 +26,11 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        if (!dataManager.haveData) {
+        if (!dataManager.CheckData()) {
             classicCubeManager.SpawnClassicCube();
             SpawnNextCube();
             InitScoreManager();
-        } else nextCube.EditCube(dataManager.gameState.nextCube.number);
+        } 
     }
     // ----------------- Init -----------------
     private void InitComponents()
