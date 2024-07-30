@@ -45,16 +45,12 @@ public class ObjectPooler : MonoBehaviour
     // ---- Spawn Object in Pooling --------------------------------
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
-        if (!poolDictionary.ContainsKey(tag))
-        {
-            Debug.LogWarning($"Pool with tag {tag} doesn't exist.");
-            return null;
-        }
-
         GameObject objectToSpawn = GetPooledObject(tag);
+        ResetObjectState(objectToSpawn);
 
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
+        objectToSpawn.gameObject.transform.localScale = Vector3.one;
         objectToSpawn.SetActive(true);
 
         return objectToSpawn;
@@ -80,12 +76,14 @@ public class ObjectPooler : MonoBehaviour
     private void ResetObjectState(GameObject objectToReturn)
     {
         Rigidbody rb = objectToReturn.GetComponent<Rigidbody>();
-        if(rb != null) {
-            rb.velocity = Vector3.zero ;
-            rb.angularVelocity = Vector3.zero ;
+        if (rb != null)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
-        objectToReturn.transform.rotation = Quaternion.identity ;
-        objectToReturn.transform.position = Vector3.zero ;
+        objectToReturn.gameObject.transform.localScale = Vector3.one;
+        objectToReturn.transform.rotation = Quaternion.identity;
+        objectToReturn.transform.position = Vector3.zero;
         objectToReturn.SetActive(false);
     }
 }

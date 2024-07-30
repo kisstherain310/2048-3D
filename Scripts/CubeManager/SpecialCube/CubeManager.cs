@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class CubeManagerBase<T> : MonoBehaviour where T : MonoBehaviour
 {
     protected ListCube listCube;
-    protected Transform defaultCubeSpawnPoint;
+    public Transform defaultCubeSpawnPoint;
 
     public void Initialize(ListCube listCube, Transform defaultCubeSpawnPoint)
     {
@@ -20,6 +20,7 @@ public abstract class CubeManagerBase<T> : MonoBehaviour where T : MonoBehaviour
         T newCube = ObjectPooler.Instance.SpawnFromPool(poolTag, defaultCubeSpawnPoint.position, Quaternion.identity).GetComponent<T>();
         newCube.GetComponent<BaseCube>().SetMainCube(true);
         newCube.GetComponent<BaseCube>().SetActiveLine(true);
+        newCube.GetComponent<BaseCube>().OffTrail();
         newCube.GetComponent<BaseCube>().initEffect.growEffect();
         GameManager.Instance.mainCube = newCube.GetComponent<BaseCube>();
         GameManager.Instance.listCube.AddDataCube(newCube.GetComponent<BaseCube>());
@@ -33,20 +34,12 @@ public abstract class CubeManagerBase<T> : MonoBehaviour where T : MonoBehaviour
     }
     public void SpawnCube(string poolTag)
     {
-        CheckNull();
-        foreach (Cube cube in listCube.cubes)
-        {
-            if (cube.isMainCube)
-            {
-                GameManager.Instance.classicCubeManager.DestroyCube(cube);
-                break;
-            }
-        }
+        CheckNull(); // sinh ra cube mới ở vị trí xuất phát
         InitCube(poolTag);
+        GameManager.Instance.dataManager.Save();
     }
     public void SpawnCube(string tag , Vector3 position, Quaternion rotation, bool isMainCube)
     {
-        CheckNull();
         T newCube = ObjectPooler.Instance.SpawnFromPool(tag, position, rotation).GetComponent<T>();
         newCube.GetComponent<BaseCube>().SetMainCube(isMainCube);
         if(isMainCube){
@@ -55,6 +48,7 @@ public abstract class CubeManagerBase<T> : MonoBehaviour where T : MonoBehaviour
         }
         else newCube.GetComponent<BaseCube>().SetActiveLine(false);
         GameManager.Instance.listCube.AddDataCube(newCube.GetComponent<BaseCube>());
+        GameManager.Instance.dataManager.Save();
     }
 
     public void DestroyCube(T cube)

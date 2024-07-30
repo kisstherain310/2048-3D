@@ -23,19 +23,13 @@ public class ListCube : MonoBehaviour
     // ----------------- Remove  -----------------
     public void RemoveCube(Cube cube)
     {
-        Cube cubeToRemove = cubes.Find(c => c.cubeUI == cube.cubeUI);
-        if (cubeToRemove != null)
-        {
-            cubes.Remove(cubeToRemove);
-        }
+        Cube newCube = cubes.Find(x => x.CubeID == cube.CubeID);
+        cubes.Remove(newCube);
     }
     public void RemoveDataCube(BaseCube cube)
     {
-        BaseCube cubeToRemove = dataCubes.Find(c => c == cube);
-        if (cubeToRemove != null)
-        {
-            dataCubes.Remove(cubeToRemove);
-        }
+        BaseCube newCube = dataCubes.Find(x => x.CubeID == cube.CubeID);
+        dataCubes.Remove(newCube);
     }
     public Vector3 FindCubeNearest(Cube newCube)
     {
@@ -44,7 +38,8 @@ public class ListCube : MonoBehaviour
         foreach (Cube cube in cubes)
         {
             if (cube.isMainCube) continue;
-            if(cube.cubeNumber == newCube.cubeNumber){
+            if (cube.cubeNumber == newCube.cubeNumber)
+            {
                 float distance = Vector3.Distance(cube.transform.position, newCube.transform.position);
                 if (distance < minDistance && distance > 0)
                 {

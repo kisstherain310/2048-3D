@@ -25,11 +25,12 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        if (!dataManager.CheckData()) {
+        if (!dataManager.CheckData()) { // Nếu không có dữ liệu thì khởi tạo lại game
             classicCubeManager.SpawnClassicCube();
-            SpawnNextCube();
-            InitScoreManager();
-        } 
+            scoreManager.InitScore();
+        } else if(mainCube == null){ // Nếu có dữ liệu nhưng kh có cube ở điểm bắt đầu thì khởi tạo lại mainCube
+            classicCubeManager.SpawnClassicCube();
+        }
     }
     // ----------------- Init -----------------
     private void InitComponents()
@@ -37,10 +38,6 @@ public class GameManager : MonoBehaviour
         InitClassicCubeManager();
         InitBombCubeManager();
         InitJokerCubeManager();
-    }
-    private void InitScoreManager()
-    {
-        scoreManager.InitScore();
     }
     private void InitClassicCubeManager()
     {
@@ -54,11 +51,6 @@ public class GameManager : MonoBehaviour
     {
         bombCubeManager.Initialize(listCube, defaultCubeSpawnPoint);
     }
-    public void SpawnNextCube()
-    {
-        nextCube.EditCube(GenerateRandomNumber());
-        nextCube.GetComponent<NextCubeMove>().MoveEffect();
-    }
     // ----------------- Helper Method -----------------
     public int GenerateRandomNumber() // 3 cube liên tiếp không được giống nhau
     {
@@ -71,13 +63,23 @@ public class GameManager : MonoBehaviour
         classicCubeManager.lastNumber = number;
         return number;
     }
-    public void DestroyMainCube()
+    public void UpdateDefaultPosition(Vector3 position)
     {
+        classicCubeManager.defaultCubeSpawnPoint.position = position;
+        jokerCubeManager.defaultCubeSpawnPoint.position = position;
+        bombCubeManager.defaultCubeSpawnPoint.position = position;
+    }
+    public void SpawnNextCube(){
+        nextCube.EditCube(GenerateRandomNumber());
+        nextCube.GetComponent<NextCubeMove>().MoveEffect();
+    }
+    public void DestroyMainCube(){
         ObjectPooler.Instance.ReturnToPool(mainCube.GetComponent<BaseCube>().poolTag, mainCube.gameObject);
+        if(mainCube.GetComponent<BaseCube>().poolTag == "ClassicCube") listCube.RemoveCube(mainCube.GetComponent<Cube>());
+        listCube.RemoveDataCube(mainCube.GetComponent<BaseCube>());
         MainCubeIsNull();
     }
-    public void MainCubeIsNull()
-    {
+    public void MainCubeIsNull(){
         mainCube = null;
     }
 }

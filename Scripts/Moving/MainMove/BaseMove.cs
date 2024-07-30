@@ -22,7 +22,7 @@ public abstract class BaseMove : MonoBehaviour, IPointerDownHandler, IDragHandle
         if (!IsMainCube()) return;
         if (isDragging)
         {
-            Vector3 newPos = GetMouseWorldPos() + offset;
+            Vector3 newPos = (GetMouseWorldPos() + offset) * 1.3f;
             if (newPos.x > maxPosx) newPos.x = maxPosx;
             if (newPos.x < -maxPosx) newPos.x = -maxPosx;
             transform.position = new Vector3(newPos.x, transform.position.y, transform.position.z);

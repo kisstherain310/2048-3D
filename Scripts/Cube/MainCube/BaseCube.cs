@@ -4,41 +4,48 @@ using UnityEngine;
 
 public abstract class BaseCube : MonoBehaviour
 {
+    public static int ID = 1;
     public string poolTag;
     [SerializeField] public GameObject line;
+    [SerializeField] public Trail trail;
     [SerializeField] private float pushForce = 20f;
     [SerializeField] public bool isMainCube = true;
     [SerializeField] public InitEffect initEffect;
     [HideInInspector] public Rigidbody rb;
-    [HideInInspector] public bool isActive = false;
     [HideInInspector] public int CubeID;
 
+    private void SetID()
+    {
+        CubeID = BaseCube.ID++;
+    }
     protected abstract void SetPoolTag();
     protected abstract void InitCubeMove();
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        SetID();
         SetPoolTag();
         InitCubeMove();
     }
-
     // ---- Event System --------------------------------
     public virtual void handlePointerUp()
     {
-        SetActive(true);
+        OnTrail();
         SetMainCube(false);
         SetActiveLine(false);
         ApplyPushForce();
         SpawnNewCube();
+        UpdateDefaultPosition();
     }
-    public int GetCubeID()
+    public void OnTrail()
     {
-        return  CubeID;
+        trail.OnTrail();
     }
-    public void SetActive(bool isActive)
+    public void OffTrail()
     {
-        this.isActive = isActive;
+        trail.OffTrail();
     }
+
     public virtual void SetMainCube(bool isMainCube)
     {
         this.isMainCube = isMainCube;
@@ -49,11 +56,15 @@ public abstract class BaseCube : MonoBehaviour
     }
     private void ApplyPushForce()
     {
-        rb.AddForce (Vector3.forward * pushForce, ForceMode.Impulse) ;
+        rb.AddForce(Vector3.forward * pushForce, ForceMode.Impulse);
     }
-    private void SpawnNewCube(){
+    private void SpawnNewCube()
+    {
         GameManager.Instance.classicCubeManager.SpawnClassicCube();
         GameManager.Instance.MainCubeIsNull();
         VibrationManagerX.Vibrate();
+    }
+    private void UpdateDefaultPosition(){
+        GameManager.Instance.UpdateDefaultPosition(transform.position);
     }
 }

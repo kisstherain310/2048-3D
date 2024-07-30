@@ -20,7 +20,7 @@ public class PointCubeManager : MonoBehaviour
     }
     private void SetRace(Vector3 position)
     {
-        pointStart = position + new Vector3(0.3f, -3f, 0);
+        pointStart = position + new Vector3(0.3f, -2f, 0);
         pointEnd = position + new Vector3(0.3f, 0f, 0);
     }
     IEnumerator DestroyPointCubeAfterTime(CubePoint cubePoint)

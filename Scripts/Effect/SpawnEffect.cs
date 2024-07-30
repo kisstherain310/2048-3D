@@ -1,50 +1,50 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnEffect : MonoBehaviour
 {
-    [SerializeField] private float scaleMultiplier = 2.2f; // Hệ số phóng to
-    [SerializeField] private float duration = 0.1f; // Thời gian phóng to và thu nhỏ
-
+    private float duration = 0.2f;
+    private Vector3 endScale;
     private Vector3 originalScale;
     private Coroutine scaleCoroutine;
-    // ---- Explore Effect --------------------------------
-    // Effect when the cube is Spawned
+
+    // Effect when the object is spawned
     public void ExploreEffect()
     {
-        // Nếu có coroutine đang chạy, hủy nó
-        if (scaleCoroutine != null)
-        {
-            StopCoroutine(scaleCoroutine);
-        }
-        // Bắt đầu một coroutine mới
+        if (scaleCoroutine != null) StopCoroutine(scaleCoroutine);
         scaleCoroutine = StartCoroutine(ScaleCoroutine());
+    }
+    public void StopEffect()
+    {
+        if (scaleCoroutine != null) StopCoroutine(scaleCoroutine);
+        transform.localScale = Vector3.one;
     }
 
     private IEnumerator ScaleCoroutine()
     {
-        yield return new WaitForSeconds(0.25f);
+        transform.localScale = Vector3.one;
+        yield return new WaitForSeconds(0.5f);
         originalScale = Vector3.one;
-        // ---- Phóng to đối tượng ----
+        endScale = new Vector3(1.4f, 1.4f, 1.4f);
+        // Scale up
         float elapsedTime = 0f;
         while (elapsedTime < duration)
         {
-            transform.localScale = Vector3.Lerp(originalScale, originalScale * scaleMultiplier, (elapsedTime / duration));
+            transform.localScale = Vector3.Lerp(originalScale, endScale, (elapsedTime / duration));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        transform.localScale = originalScale * scaleMultiplier;
+        transform.localScale = endScale;
 
-        // ---- Thu nhỏ đối tượng về kích thước ban đầu ----
+        // Scale down
         elapsedTime = 0f;
         while (elapsedTime < duration)
         {
-            transform.localScale = Vector3.Lerp(originalScale * scaleMultiplier, originalScale, (elapsedTime / duration));
+            transform.localScale = Vector3.Lerp(endScale, originalScale, (elapsedTime / duration));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        transform.localScale = Vector3.one;
+        transform.localScale = originalScale; // Reset to original scale
         scaleCoroutine = null;
     }
 }

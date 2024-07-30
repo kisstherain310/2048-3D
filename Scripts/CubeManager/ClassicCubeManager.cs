@@ -6,7 +6,7 @@ using UnityEngine;
 public class ClassicCubeManager : MonoBehaviour
 {
     private ListCube listCube;
-    private Transform defaultCubeSpawnPoint;
+    public Transform defaultCubeSpawnPoint;
     public int lastNumber = 64;
     public int lastOfLastNumber = 32;
 
@@ -18,9 +18,10 @@ public class ClassicCubeManager : MonoBehaviour
     public void InitClassicCube()
     {
         int number = 2;
-        if(GameManager.Instance.nextCube != null) number = GameManager.Instance.nextCube.cubeNumber;    
+        if (GameManager.Instance.nextCube.cubeNumber > 0) number = GameManager.Instance.nextCube.cubeNumber;
         Cube newCube = CreateNewCube(defaultCubeSpawnPoint.position, true, number);
         newCube.initEffect.growEffect();
+        GameManager.Instance.mainCube = newCube;
     }
     public Cube SpawnCubeX2(Vector3 spawnPoint, int number)
     {
@@ -34,9 +35,13 @@ public class ClassicCubeManager : MonoBehaviour
     }
     IEnumerator ISpawnClassicCube()
     {
-        yield return new WaitForSeconds(0.3f);
-        InitClassicCube();
-        GameManager.Instance.SpawnNextCube();
+        yield return new WaitForSeconds(0.5f);
+        if (GameManager.Instance.mainCube == null)
+        {
+            InitClassicCube();
+            GameManager.Instance.SpawnNextCube();
+            GameManager.Instance.dataManager.Save();
+        }
     }
     // ----------------- Create and Destroy -----------------
     private Cube CreateNewCube(Vector3 position, bool condition, int number)
@@ -44,6 +49,7 @@ public class ClassicCubeManager : MonoBehaviour
         Cube newCube = ObjectPooler.Instance.SpawnFromPool("ClassicCube", position, Quaternion.identity).GetComponent<Cube>();
         newCube.SetMainCube(condition);
         newCube.SetActiveLine(condition);
+        newCube.trail.OffTrail();
         newCube.EditCube(number);
 
         listCube.AddCube(newCube);
@@ -55,8 +61,13 @@ public class ClassicCubeManager : MonoBehaviour
     {
         Cube newCube = ObjectPooler.Instance.SpawnFromPool("ClassicCube", position, rotation).GetComponent<Cube>();
         newCube.SetMainCube(isMainCube);
-        if(isMainCube) newCube.SetActiveLine(true);
+        if (isMainCube)
+        {
+            newCube.SetActiveLine(true);
+            GameManager.Instance.mainCube = newCube;
+        }
         else newCube.SetActiveLine(false);
+        newCube.trail.OffTrail();
         newCube.EditCube(number);
 
         listCube.AddCube(newCube);
@@ -65,6 +76,7 @@ public class ClassicCubeManager : MonoBehaviour
 
     public void DestroyCube(Cube cube)
     {
+        cube.spawnEffect.StopEffect();
         ObjectPooler.Instance.ReturnToPool("ClassicCube", cube.gameObject);
         listCube.RemoveCube(cube);
         listCube.RemoveDataCube(cube);

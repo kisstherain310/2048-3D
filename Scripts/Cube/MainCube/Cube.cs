@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Cube : BaseCube
 {
-    private static int ID = 1;
     [SerializeField] public CubeUI cubeUI;
     [SerializeField] public CubeMove cubeMove;
     [SerializeField] public CubeX2Move cubeX2Move;
@@ -18,7 +17,6 @@ public class Cube : BaseCube
     {
         cubeMove.GetCube(this);
     }
-
     // ---- Helper Method --------------------------------
     public float getMaxPosx()
     {
@@ -26,7 +24,6 @@ public class Cube : BaseCube
     }
     public void EditCube(int number)
     {
-        CubeID = ID++;
         cubeNumber = number;
         cubeUI.EditCube(number);
     }

@@ -8,7 +8,7 @@ public static class VibrationManagerX
     private static AndroidJavaObject currentActivity;
     private static AndroidJavaObject vibrator;
 
-    public static void Vibrate(long milliseconds = 60)
+    public static void Vibrate(long milliseconds = 80)
     {
         if (IsAndroid())
         {

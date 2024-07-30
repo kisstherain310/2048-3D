@@ -10,7 +10,8 @@ public class JokerCollisionHandler : BaseCollisionHandler<JokerCube>
     }
     public override void HandleCollision(Collision collision)
     {
-        if(cube.isMainCube) {
+        if (cube.isMainCube)
+        {
             DestroyCube(cube); // Destroy main cube để kh có 2 cube trên vạch xuất phát cùng lúc
             return;
         };
@@ -23,11 +24,13 @@ public class JokerCollisionHandler : BaseCollisionHandler<JokerCube>
 
             Vector3 contactPoint = collision.contacts[0].point;
             Cube newCubeX2 = GameManager.Instance.classicCubeManager.SpawnCubeX2(contactPoint + Vector3.up * 1.1f, cube.cubeNumber * 2);
-            SpawnPointCube(newCubeX2.transform.position, cube.cubeNumber * 2, newCubeX2.cubeUI.color);
+            SpawnPointCube(newCubeX2.transform.position, newCubeX2.cubeNumber, newCubeX2.cubeUI.color);
 
             ProcessNewCube(newCubeX2, contactPoint);
             ExplosionForce(contactPoint);
-            FXManager.Instance.PlayFX(contactPoint, 2);     
+            FXManager.Instance.PlayFX(contactPoint, 2);
+            FXManager.Instance.GetFX(1).transform.SetParent(newCubeX2.transform);
+            FXManager.Instance.PlayFX(contactPoint, newCubeX2.cubeUI.color, 1);
         }
     }
 }
