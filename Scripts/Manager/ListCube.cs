@@ -31,6 +31,17 @@ public class ListCube : MonoBehaviour
         BaseCube newCube = dataCubes.Find(x => x.CubeID == cube.CubeID);
         dataCubes.Remove(newCube);
     }
+    public void RemoveAllCube()
+    {
+        while(dataCubes.Count > 0)
+        {
+            if(dataCubes[0].poolTag == "ClassicCube") GameManager.Instance.classicCubeManager.DestroyCube(dataCubes[0].GetComponent<Cube>());
+            else if(dataCubes[0].poolTag == "BombCube") GameManager.Instance.bombCubeManager.DestroyCube(dataCubes[0].GetComponent<BombCube>());
+            else if(dataCubes[0].poolTag == "JokerCube") GameManager.Instance.jokerCubeManager.DestroyCube(dataCubes[0].GetComponent<JokerCube>());
+        }
+        cubes.Clear();
+        dataCubes.Clear();
+    }
     public Vector3 FindCubeNearest(Cube newCube)
     {
         float minDistance = Mathf.Infinity;

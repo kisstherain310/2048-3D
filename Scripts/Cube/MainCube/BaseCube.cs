@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class BaseCube : MonoBehaviour
@@ -30,16 +31,18 @@ public abstract class BaseCube : MonoBehaviour
     // ---- Event System --------------------------------
     public virtual void handlePointerUp()
     {
-        OnTrail();
+        StartCoroutine(TrailAction());
         SetMainCube(false);
         SetActiveLine(false);
         ApplyPushForce();
         SpawnNewCube();
         UpdateDefaultPosition();
     }
-    public void OnTrail()
+    IEnumerator TrailAction()
     {
         trail.OnTrail();
+        yield return new WaitForSeconds(1f);
+        trail.OffTrail();
     }
     public void OffTrail()
     {
@@ -61,7 +64,7 @@ public abstract class BaseCube : MonoBehaviour
     private void SpawnNewCube()
     {
         GameManager.Instance.classicCubeManager.SpawnClassicCube();
-        GameManager.Instance.MainCubeIsNull();
+        GameManager.Instance.SetMainCubeNull();
         VibrationManagerX.Vibrate();
     }
     private void UpdateDefaultPosition(){

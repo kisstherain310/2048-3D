@@ -6,7 +6,7 @@ using UnityEngine;
 public class EventJokerCube : MonoBehaviour
 {
     private bool isActive = true;
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         if (!isActive) return;
         VibrationManagerX.Vibrate();

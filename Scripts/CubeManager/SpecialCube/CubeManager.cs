@@ -7,11 +7,17 @@ public abstract class CubeManagerBase<T> : MonoBehaviour where T : MonoBehaviour
 {
     protected ListCube listCube;
     public Transform defaultCubeSpawnPoint;
+    private GameObject cubeParent;
 
-    public void Initialize(ListCube listCube, Transform defaultCubeSpawnPoint)
+    public void Initialize(ListCube listCube, Transform defaultCubeSpawnPoint, GameObject cubeParent)
     {
         this.listCube = listCube;
         this.defaultCubeSpawnPoint = defaultCubeSpawnPoint;
+        this.cubeParent = cubeParent;
+    }
+    public void SetParent(GameObject cubeParent)
+    {
+        this.cubeParent = cubeParent;
     }
 
     // ----------------- SpawnCube -----------------
@@ -22,6 +28,7 @@ public abstract class CubeManagerBase<T> : MonoBehaviour where T : MonoBehaviour
         newCube.GetComponent<BaseCube>().SetActiveLine(true);
         newCube.GetComponent<BaseCube>().OffTrail();
         newCube.GetComponent<BaseCube>().initEffect.growEffect();
+        newCube.transform.SetParent(cubeParent.transform);
         GameManager.Instance.mainCube = newCube.GetComponent<BaseCube>();
         GameManager.Instance.listCube.AddDataCube(newCube.GetComponent<BaseCube>());
     }
@@ -47,12 +54,15 @@ public abstract class CubeManagerBase<T> : MonoBehaviour where T : MonoBehaviour
             GameManager.Instance.mainCube = newCube.GetComponent<BaseCube>();
         }
         else newCube.GetComponent<BaseCube>().SetActiveLine(false);
+        newCube.GetComponent<BaseCube>().OffTrail();
+        newCube.transform.SetParent(cubeParent.transform);
         GameManager.Instance.listCube.AddDataCube(newCube.GetComponent<BaseCube>());
         GameManager.Instance.dataManager.Save();
     }
 
     public void DestroyCube(T cube)
     {
+        cube.transform.SetParent(null);
         ObjectPooler.Instance.ReturnToPool(cube.GetComponent<BaseCube>().poolTag, cube.gameObject);
         GameManager.Instance.listCube.RemoveDataCube(cube.GetComponent<BaseCube>());
     }

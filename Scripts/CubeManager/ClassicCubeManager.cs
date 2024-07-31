@@ -9,11 +9,17 @@ public class ClassicCubeManager : MonoBehaviour
     public Transform defaultCubeSpawnPoint;
     public int lastNumber = 64;
     public int lastOfLastNumber = 32;
+    private GameObject cubeParent;
 
-    public void Initialize(ListCube listCube, Transform defaultCubeSpawnPoint)
+    public void Initialize(ListCube listCube, Transform defaultCubeSpawnPoint, GameObject cubeParent)
     {
         this.listCube = listCube;
         this.defaultCubeSpawnPoint = defaultCubeSpawnPoint;
+        this.cubeParent = cubeParent;
+    }
+    public void SetParent(GameObject cubeParent)
+    {
+        this.cubeParent = cubeParent;
     }
     public void InitClassicCube()
     {
@@ -54,6 +60,7 @@ public class ClassicCubeManager : MonoBehaviour
 
         listCube.AddCube(newCube);
         listCube.AddDataCube(newCube);
+        newCube.transform.SetParent(cubeParent.transform);
         return newCube;
     }
 
@@ -72,11 +79,13 @@ public class ClassicCubeManager : MonoBehaviour
 
         listCube.AddCube(newCube);
         listCube.AddDataCube(newCube);
+        newCube.transform.SetParent(cubeParent.transform);
     }
 
     public void DestroyCube(Cube cube)
     {
         cube.spawnEffect.StopEffect();
+        cube.transform.SetParent(null);
         ObjectPooler.Instance.ReturnToPool("ClassicCube", cube.gameObject);
         listCube.RemoveCube(cube);
         listCube.RemoveDataCube(cube);

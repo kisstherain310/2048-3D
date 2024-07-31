@@ -20,12 +20,12 @@ public class DataManager : MonoBehaviour
     private bool haveData = false;
     void Start()
     {
-        LoadGameState();
+        // LoadGameState();
     }
 
     public void Save()
     {
-        SaveGameState();
+        // SaveGameState();
     }
     private void SaveGameState()
     {

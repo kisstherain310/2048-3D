@@ -9,13 +9,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Cube nextCube;
     [SerializeField] private Transform defaultCubeSpawnPoint;
     [SerializeField] public ScoreManager scoreManager;
+    [SerializeField] public BoardManager boardManager;
     [SerializeField] public ClassicCubeManager classicCubeManager;
     [SerializeField] public JokerCubeManager jokerCubeManager;
     [SerializeField] public BombCubeManager bombCubeManager;
     [SerializeField] public PointCubeManager pointCubeManager;
     [SerializeField] public DataManager dataManager;
-
+    [SerializeField] public LevelManager levelManager;
+    [SerializeField] public UIGameLose uiGameLose;
+    [HideInInspector] public GameStatus gameStatus;
     [HideInInspector] public BaseCube mainCube = null;
+    
 
     private void Awake()
     {
@@ -25,14 +29,25 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        boardManager.SpawnBoard(levelManager.GetMainLevel());
         if (!dataManager.CheckData()) { // Nếu không có dữ liệu thì khởi tạo lại game
-            classicCubeManager.SpawnClassicCube();
-            scoreManager.InitScore();
+            InitGame();
         } else if(mainCube == null){ // Nếu có dữ liệu nhưng kh có cube ở điểm bắt đầu thì khởi tạo lại mainCube
             classicCubeManager.SpawnClassicCube();
         }
+        gameStatus = new GameStatus();
     }
     // ----------------- Init -----------------
+
+    public void InitGame(){
+        SetMainCubeNull();
+        classicCubeManager.SetParent(levelManager.GetMainLevel());
+        jokerCubeManager.SetParent(levelManager.GetMainLevel());
+        bombCubeManager.SetParent(levelManager.GetMainLevel());
+        classicCubeManager.SpawnClassicCube();
+        scoreManager.InitScore();
+        gameStatus.OnPlay();
+    }
     private void InitComponents()
     {
         InitClassicCubeManager();
@@ -41,15 +56,15 @@ public class GameManager : MonoBehaviour
     }
     private void InitClassicCubeManager()
     {
-        classicCubeManager.Initialize(listCube, defaultCubeSpawnPoint);
+        classicCubeManager.Initialize(listCube, defaultCubeSpawnPoint, levelManager.GetMainLevel());
     }
     private void InitJokerCubeManager()
     {
-        jokerCubeManager.Initialize(listCube, defaultCubeSpawnPoint);
+        jokerCubeManager.Initialize(listCube, defaultCubeSpawnPoint, levelManager.GetMainLevel());
     }
     private void InitBombCubeManager()
     {
-        bombCubeManager.Initialize(listCube, defaultCubeSpawnPoint);
+        bombCubeManager.Initialize(listCube, defaultCubeSpawnPoint, levelManager.GetMainLevel());
     }
     // ----------------- Helper Method -----------------
     public int GenerateRandomNumber() // 3 cube liên tiếp không được giống nhau
@@ -77,9 +92,18 @@ public class GameManager : MonoBehaviour
         ObjectPooler.Instance.ReturnToPool(mainCube.GetComponent<BaseCube>().poolTag, mainCube.gameObject);
         if(mainCube.GetComponent<BaseCube>().poolTag == "ClassicCube") listCube.RemoveCube(mainCube.GetComponent<Cube>());
         listCube.RemoveDataCube(mainCube.GetComponent<BaseCube>());
-        MainCubeIsNull();
+        SetMainCubeNull();
     }
-    public void MainCubeIsNull(){
+    public void SetMainCubeNull(){
         mainCube = null;
+    }
+    public void GameOver(){
+        uiGameLose.Show();
+        gameStatus.OnGameOver();
+    }
+    
+    public void OnPlay(){
+        uiGameLose.Hide();
+        levelManager.OnReplay();
     }
 }
