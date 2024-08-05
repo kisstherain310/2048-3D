@@ -8,10 +8,10 @@ public class PointCubeManager : MonoBehaviour
     private float time = 1f;
     private Vector3 pointStart;
     private Vector3 pointEnd;
-    public void SpawnPointCube(Vector3 position, int point, Color color)
+    public void SpawnPointCube(Vector3 position, int point)
     {
         CubePoint cubePoint = ObjectPooler.Instance.SpawnFromPool("PointCube", position, Quaternion.identity).GetComponent<CubePoint>();
-        cubePoint.CreatePoint(point, color);
+        cubePoint.CreatePoint(point);
         SetRace(position);
         cubePoint.pointMove.MoveEffect(pointStart, pointEnd);
         StartCoroutine(DestroyPointCubeAfterTime(cubePoint));

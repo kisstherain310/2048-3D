@@ -27,7 +27,8 @@ public class ClassicCubeManager : MonoBehaviour
         if (GameManager.Instance.nextCube.cubeNumber > 0) number = GameManager.Instance.nextCube.cubeNumber;
         Cube newCube = CreateNewCube(defaultCubeSpawnPoint.position, true, number);
         newCube.initEffect.growEffect();
-        GameManager.Instance.mainCube = newCube;
+        GameManager.Instance.SetMainCube(newCube);
+        SoundManager.instance.PlayClip(AudioType.BoxShot);
     }
     public Cube SpawnCubeX2(Vector3 spawnPoint, int number)
     {
@@ -42,11 +43,11 @@ public class ClassicCubeManager : MonoBehaviour
     IEnumerator ISpawnClassicCube()
     {
         yield return new WaitForSeconds(0.5f);
-        if (GameManager.Instance.mainCube == null)
+        if (GameManager.Instance.mainCube == null && GameManager.Instance.gameStatus.IsPlaying())
         {
             InitClassicCube();
             GameManager.Instance.SpawnNextCube();
-            GameManager.Instance.dataManager.Save();
+            GameManager.Instance.dataManager.SaveGameState();
         }
     }
     // ----------------- Create and Destroy -----------------
@@ -71,7 +72,7 @@ public class ClassicCubeManager : MonoBehaviour
         if (isMainCube)
         {
             newCube.SetActiveLine(true);
-            GameManager.Instance.mainCube = newCube;
+            GameManager.Instance.SetMainCube(newCube);
         }
         else newCube.SetActiveLine(false);
         newCube.trail.OffTrail();

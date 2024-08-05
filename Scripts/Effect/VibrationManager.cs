@@ -10,6 +10,7 @@ public static class VibrationManagerX
 
     public static void Vibrate(long milliseconds = 80)
     {
+        if(!SoundManager.instance.isVibrate) return;   
         if (IsAndroid())
         {
             if (vibrator == null)

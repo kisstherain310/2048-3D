@@ -19,18 +19,19 @@ public class JokerCollisionHandler : BaseCollisionHandler<JokerCube>
         if (jokerCube != null)
         {
             VibrationManagerX.Vibrate();
-            DestroyCube(jokerCube);
-            DestroyCube(cube);
-
             Vector3 contactPoint = collision.contacts[0].point;
             Cube newCubeX2 = GameManager.Instance.classicCubeManager.SpawnCubeX2(contactPoint + Vector3.up * 1.1f, cube.cubeNumber * 2);
-            SpawnPointCube(newCubeX2.transform.position, newCubeX2.cubeNumber, newCubeX2.cubeUI.color);
+            if(jokerCube.transform.parent != null) DestroyCube(jokerCube);
+            if(cube.transform.parent != null) DestroyCube(cube);
+
+            SpawnPointCube(newCubeX2.transform.position, newCubeX2.cubeNumber);
 
             ProcessNewCube(newCubeX2, contactPoint);
             ExplosionForce(contactPoint);
-            FXManager.Instance.PlayFX(contactPoint, 2);
+            FXManager.Instance.PlayFX(contactPoint, FXType.JokerEffect);
             FXManager.Instance.GetFX(1).transform.SetParent(newCubeX2.transform);
-            FXManager.Instance.PlayFX(contactPoint, newCubeX2.cubeUI.color, 1);
+            FXManager.Instance.PlayFX(contactPoint, newCubeX2.cubeUI.color, FXType.BlastVFX);
+            SoundManager.instance.PlayClip(AudioType.JokerExplore);
         }
     }
 }

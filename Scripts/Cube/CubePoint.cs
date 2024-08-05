@@ -8,12 +8,12 @@ public class CubePoint : MonoBehaviour
     [SerializeField] public PointMove pointMove;
     [SerializeField] private TMP_Text pointText;
     // ---- Helper Method --------------------------------
-    public void CreatePoint(int number, Color color)
+    public void CreatePoint(int number)
     {
         SetPoint(number);
     }
-    private void SetPoint(int point)
+    private void SetPoint(int number)
     {
-        pointText.text = '+' + point.ToString();
+        pointText.text = '+' + Utilities.ProcessNumber(number);
     }
 }

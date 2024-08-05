@@ -11,9 +11,7 @@ public class BoardManager : MonoBehaviour
         oldBoard = newBoard;
         newBoard = ObjectPooler.Instance.SpawnFromPool("Board", position, Quaternion.identity);
         newBoard.transform.SetParent(boardParent.transform);
-        
     }
-
     public void DestroyBoard(){
         oldBoard.transform.SetParent(null);
         ObjectPooler.Instance.ReturnToPool("Board", oldBoard);

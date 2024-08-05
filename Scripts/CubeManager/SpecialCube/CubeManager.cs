@@ -29,9 +29,11 @@ public abstract class CubeManagerBase<T> : MonoBehaviour where T : MonoBehaviour
         newCube.GetComponent<BaseCube>().OffTrail();
         newCube.GetComponent<BaseCube>().initEffect.growEffect();
         newCube.transform.SetParent(cubeParent.transform);
-        GameManager.Instance.mainCube = newCube.GetComponent<BaseCube>();
+        GameManager.Instance.SetMainCube(newCube.GetComponent<BaseCube>());
         GameManager.Instance.listCube.AddDataCube(newCube.GetComponent<BaseCube>());
+        PlaySound();
     }
+    public abstract void PlaySound();
 
     // ----------------- Helper Method -----------------
     public void CheckNull(){
@@ -42,8 +44,10 @@ public abstract class CubeManagerBase<T> : MonoBehaviour where T : MonoBehaviour
     public void SpawnCube(string poolTag)
     {
         CheckNull(); // sinh ra cube mới ở vị trí xuất phát
-        InitCube(poolTag);
-        GameManager.Instance.dataManager.Save();
+        if (GameManager.Instance.mainCube == null && GameManager.Instance.gameStatus.IsPlaying()){
+            InitCube(poolTag);
+            GameManager.Instance.dataManager.SaveGameState();
+        }
     }
     public void SpawnCube(string tag , Vector3 position, Quaternion rotation, bool isMainCube)
     {
@@ -51,13 +55,13 @@ public abstract class CubeManagerBase<T> : MonoBehaviour where T : MonoBehaviour
         newCube.GetComponent<BaseCube>().SetMainCube(isMainCube);
         if(isMainCube){
             newCube.GetComponent<BaseCube>().SetActiveLine(true);
-            GameManager.Instance.mainCube = newCube.GetComponent<BaseCube>();
+            GameManager.Instance.SetMainCube(newCube.GetComponent<BaseCube>());
         }
         else newCube.GetComponent<BaseCube>().SetActiveLine(false);
         newCube.GetComponent<BaseCube>().OffTrail();
         newCube.transform.SetParent(cubeParent.transform);
         GameManager.Instance.listCube.AddDataCube(newCube.GetComponent<BaseCube>());
-        GameManager.Instance.dataManager.Save();
+        GameManager.Instance.dataManager.SaveGameState();
     }
 
     public void DestroyCube(T cube)

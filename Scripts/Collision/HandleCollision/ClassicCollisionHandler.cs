@@ -12,20 +12,21 @@ public class ClassicCollisionHandler : BaseCollisionHandler<Cube>
             if (cube.cubeNumber == otherCube.cubeNumber)
             {
                 VibrationManagerX.Vibrate();
-                DestroyCube(otherCube);
-                DestroyCube(cube);
+                if(otherCube.transform.parent != null) DestroyCube(otherCube);
+                if(cube.transform.parent != null) DestroyCube(cube);
 
                 Vector3 contactPoint = collision.contacts[0].point;
                 Cube newCubeX2 = GameManager.Instance.classicCubeManager.SpawnCubeX2(contactPoint + Vector3.up * 1.1f, cube.cubeNumber * 2);
-                SpawnPointCube(newCubeX2.transform.position, cube.cubeNumber * 2, newCubeX2.cubeUI.color);
+                SpawnPointCube(newCubeX2.transform.position, cube.cubeNumber * 2);
 
                 ProcessNewCube(newCubeX2, contactPoint);
                 ExplosionForce(contactPoint);
 
-                FXManager.Instance.PlayFX(contactPoint, newCubeX2.cubeUI.color, 0);
+                FXManager.Instance.PlayFX(contactPoint, newCubeX2.cubeUI.color, FXType.ConfettiVFX);
                 FXManager.Instance.GetFX(1).transform.SetParent(newCubeX2.transform);
-                FXManager.Instance.PlayFX(contactPoint, newCubeX2.cubeUI.color, 1);
+                FXManager.Instance.PlayFX(contactPoint, newCubeX2.cubeUI.color, FXType.BlastVFX);
+                SoundManager.instance.PlayComboHit(newCubeX2.cubeNumber);
             }
         }
-    }
+    } 
 }

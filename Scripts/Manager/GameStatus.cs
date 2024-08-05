@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameStatus : MonoBehaviour
 {
     private bool isGameOver = false;
-    public bool IsLose() {
+    public bool IsPlaying() {
         return !isGameOver;
     }
     public void OnGameOver() {

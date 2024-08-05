@@ -8,7 +8,7 @@ public class CubeCollision : MonoBehaviour
     private JokerCollisionHandler jokerHandler;
     private BombCollisionHandler bombHandler;
 
-    private void Awake()
+    void Awake()
     {
         classicHandler = gameObject.AddComponent<ClassicCollisionHandler>();
         jokerHandler = gameObject.AddComponent<JokerCollisionHandler>();

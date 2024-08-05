@@ -36,19 +36,7 @@ public class CubeUI : MonoBehaviour
     private void SetNumber(int number)
     {
         this.number = number;
-        string Number;
-        if(10000 < number && number < 1000000){
-            Number = (number / 1000).ToString() + "K";
-        }else if(1000000 < number && number < 1000000000){
-            Number = (number / 1000000).ToString() + "M";
-        }else if(1000000000 < number){    
-            Number = (number / 1000000000).ToString() + "B";
-        }else{
-            Number = number.ToString();
-        }
-        foreach (var t in text)
-        {
-            t.text = Number;
-        }
+        string Number= Utilities.ProcessNumber(number);
+        for(int i = 0; i < text.Length; i++) text[i].text = Number;
     }
 }

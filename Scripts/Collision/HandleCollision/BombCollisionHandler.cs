@@ -18,12 +18,13 @@ public class BombCollisionHandler : BaseCollisionHandler<BombCube>
         if (bombCube != null)
         {
             VibrationManagerX.Vibrate();
-            SpawnPointCube(cube.transform.position, cube.cubeNumber, cube.cubeUI.color);
-            DestroyCube(bombCube);
-            DestroyCube(cube);
+            if(cube.transform.parent != null) SpawnPointCube(cube.transform.position, cube.cubeNumber);
+            if(bombCube.transform.parent != null) DestroyCube(bombCube);
+            if(cube.transform.parent != null) DestroyCube(cube);
 
             Vector3 contactPoint = collision.contacts[0].point;
-            FXManager.Instance.PlayFX(contactPoint, 3);               
+            FXManager.Instance.PlayFX(contactPoint, FXType.BombEffect);    
+            SoundManager.instance.PlayClip(AudioType.BombExplore);           
         }
     }
 }

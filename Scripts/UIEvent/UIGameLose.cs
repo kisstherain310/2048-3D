@@ -8,14 +8,10 @@ public class UIGameLose : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
-        OnActive();
+        countDownTimer.CountDown();
     }
     public void Hide()
     {
         gameObject.SetActive(false);
-    }
-    private void OnActive()
-    {
-        countDownTimer.CountDown();
     }
 }

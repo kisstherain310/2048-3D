@@ -6,20 +6,14 @@ public class ListCube : MonoBehaviour
 {
     [HideInInspector] public List<Cube> cubes;
     [HideInInspector] public List<BaseCube> dataCubes;
-    private void Awake()
+    void Awake()
     {
         cubes = new List<Cube>();
     }
     // ----------------- Helper Method -----------------
     // ----------------- Add  -----------------
-    public void AddCube(Cube cube)
-    {
-        cubes.Add(cube);
-    }
-    public void AddDataCube(BaseCube cube)
-    {
-        dataCubes.Add(cube);
-    }
+    public void AddCube(Cube cube) => cubes.Add(cube);
+    public void AddDataCube(BaseCube cube) => dataCubes.Add(cube);
     // ----------------- Remove  -----------------
     public void RemoveCube(Cube cube)
     {
@@ -46,16 +40,16 @@ public class ListCube : MonoBehaviour
     {
         float minDistance = Mathf.Infinity;
         Vector3 nearestCubePosition = Vector3.zero;
-        foreach (Cube cube in cubes)
+        for(int i = 0; i < cubes.Count; i++)
         {
-            if (cube.isMainCube) continue;
-            if (cube.cubeNumber == newCube.cubeNumber)
+            if (cubes[i].isMainCube) continue;
+            if (cubes[i].cubeNumber == newCube.cubeNumber)
             {
-                float distance = Vector3.Distance(cube.transform.position, newCube.transform.position);
+                float distance = Vector3.Distance(cubes[i].transform.position, newCube.transform.position);
                 if (distance < minDistance && distance > 0)
                 {
                     minDistance = distance;
-                    nearestCubePosition = cube.transform.position;
+                    nearestCubePosition = cubes[i].transform.position;
                 }
             }
         }

@@ -9,7 +9,7 @@ public abstract class BaseCollisionHandler<T> : MonoBehaviour
     protected float momen = 45f;
     protected float minMomen = 30f;
 
-    protected virtual void Awake()
+    void Awake()
     {
         cube = GetComponent<Cube>();
     }
@@ -37,24 +37,24 @@ public abstract class BaseCollisionHandler<T> : MonoBehaviour
         float z = Random.Range(-1f, 1f);
         return new Vector3(x, y, z);
     }
-    protected void SpawnPointCube(Vector3 position, int point, Color color)
+    protected void SpawnPointCube(Vector3 position, int point)
     {
-        GameManager.Instance.pointCubeManager.SpawnPointCube(position, point, color);
+        GameManager.Instance.pointCubeManager.SpawnPointCube(position, point);
     }
     protected void ExplosionForce(Vector3 contactPoint)
     {
         Collider[] surroundedCubes = Physics.OverlapSphere(contactPoint, 1f);
         float explosionForce = 30f;
         float explosionRadius = 1.05f;
-        foreach (Collider coll in surroundedCubes)
+        for (int i = 0; i < surroundedCubes.Length; i++)
         {
-            if (coll.attachedRigidbody != null)
-                coll.attachedRigidbody.AddExplosionForce(explosionForce, contactPoint, explosionRadius);
+            if (surroundedCubes[i].attachedRigidbody != null)
+                surroundedCubes[i].attachedRigidbody.AddExplosionForce(explosionForce, contactPoint, explosionRadius);
         }
     }
     public virtual void DestroyCube(T cube) { }
     protected void DestroyCube(Cube cube)
     {
-        GameManager.Instance.classicCubeManager.DestroyCube(cube);
+        if (cube.transform.parent != null) GameManager.Instance.classicCubeManager.DestroyCube(cube);
     }
 }

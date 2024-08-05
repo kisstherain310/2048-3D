@@ -14,4 +14,8 @@ public class JokerCubeManager : CubeManagerBase<JokerCube>
     {
         DestroyCube(jokerCube);
     }
+    public override void PlaySound()
+    {
+        SoundManager.instance.PlayClip(AudioType.JokerShot);
+    }
 }

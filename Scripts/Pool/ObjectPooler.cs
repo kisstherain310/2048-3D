@@ -4,7 +4,7 @@ using UnityEngine;
 public class ObjectPooler : MonoBehaviour
 {
     public static ObjectPooler Instance;
-
+    void Awake() => Instance = this;
     [System.Serializable]
     public class Pool
     {
@@ -12,34 +12,23 @@ public class ObjectPooler : MonoBehaviour
         public GameObject prefab;
         public int size;
     }
-
     public List<Pool> pools;
     private Dictionary<string, Queue<GameObject>> poolDictionary;
-
-    void Awake()
-    {
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-        InitializePools();
-    }
-
     // ---- Initialize Pool --------------------------------
-    private void InitializePools()
+    public void Initialize()
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
-
-        foreach (Pool pool in pools)
+        for(int idx = 0; idx < pools.Count; idx++)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
-
-            for (int i = 0; i < pool.size; i++)
+            for (int i = 0; i < pools[idx].size; i++)
             {
-                GameObject obj = Instantiate(pool.prefab);
+                GameObject obj = Instantiate(pools[idx].prefab);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
 
-            poolDictionary.Add(pool.tag, objectPool);
+            poolDictionary.Add(pools[idx].tag, objectPool);
         }
     }
     // ---- Spawn Object in Pooling --------------------------------
@@ -47,12 +36,10 @@ public class ObjectPooler : MonoBehaviour
     {
         GameObject objectToSpawn = GetPooledObject(tag);
         ResetObjectState(objectToSpawn);
-
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
         objectToSpawn.gameObject.transform.localScale = Vector3.one;
         objectToSpawn.SetActive(true);
-
         return objectToSpawn;
     }
     private GameObject GetPooledObject(string tag)
@@ -63,7 +50,6 @@ public class ObjectPooler : MonoBehaviour
             obj.SetActive(false);
             poolDictionary[tag].Enqueue(obj);
         }
-
         return poolDictionary[tag].Dequeue();
     }
 

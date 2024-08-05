@@ -7,13 +7,14 @@ public class DeathLineCollisionHandler : MonoBehaviour
     private Vector3 bumbPosition = Vector3.zero;
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("ClassicCube")) 
+        if(other.CompareTag("ClassicCube") || other.CompareTag("BombCube") || other.CompareTag("JokerCube")) 
         {
-            Cube cube = other.GetComponent<Cube>();
-            if(cube != null) {
-                if(!cube.isMainCube && cube.rb.velocity.magnitude < 1f && GameManager.Instance.gameStatus.IsLose()) {
+            BaseCube cube = other.GetComponent<BaseCube>();
+            if(cube.transform.parent != null) {
+                if(!cube.isMainCube && cube.rb.velocity.magnitude < 1f && GameManager.Instance.gameStatus.IsPlaying()) {
                     GameManager.Instance.GameOver();
-                    FXManager.Instance.PlayFX(bumbPosition, 4);
+                    FXManager.Instance.PlayFX(bumbPosition, FXType.ReplayEffect);
+                    SoundManager.instance.PlayClip(AudioType.SmallSuccess);
                 }
             }
         }

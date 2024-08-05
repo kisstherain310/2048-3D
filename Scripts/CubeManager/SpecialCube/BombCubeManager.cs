@@ -14,4 +14,8 @@ public class BombCubeManager : CubeManagerBase<BombCube>
     {
         DestroyCube(bombCube);
     }
+    public override void PlaySound()
+    {
+        SoundManager.instance.PlayClip(AudioType.BombShot);
+    }
 }

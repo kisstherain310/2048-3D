@@ -1,0 +1,4 @@
+Awake khi nó không phụ thuộc vào các thành phần khác
+Start khi nó phụ thuộc vào các thành phần khác
+Dùng Invoke khi kh có đối số hàm
+Ease trong unity 

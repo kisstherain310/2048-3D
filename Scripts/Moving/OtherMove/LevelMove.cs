@@ -18,7 +18,6 @@ public class LevelMove : MonoBehaviour
         Vector3 B = pointEnd;
 
         float elapsedTime = 0.0f;
-
         while (elapsedTime < totalTime)
         {
             transform.position = Vector3.Lerp(A, B, elapsedTime / totalTime);
@@ -27,6 +26,6 @@ public class LevelMove : MonoBehaviour
         }
         transform.position = B;
         if(isMain) OnTaskCompleted?.Invoke();
-        else transform.position = new Vector3(0, 0, 5); 
+        else transform.position = pointStart; 
     }
 }

@@ -18,16 +18,8 @@ public class DataManager : MonoBehaviour
     private int highScore;
     private List<BaseCube> dataCubes;
     private bool haveData = false;
-    void Start()
-    {
-        // LoadGameState();
-    }
 
-    public void Save()
-    {
-        // SaveGameState();
-    }
-    private void SaveGameState()
+    public void SaveGameState()
     {
         SaveCube();
         SaveNextCube();
@@ -44,7 +36,7 @@ public class DataManager : MonoBehaviour
         GameState = JsonUtility.ToJson(gameState);
     }
 
-    private void LoadGameState()
+    public void LoadGameState()
     {
         if (GameState.Length > 0)
         {
@@ -68,16 +60,16 @@ public class DataManager : MonoBehaviour
         inforClassicCubes = new List<InforClassicCube>();
         inforSpecialCubes = new List<InforSpecialCube>();
         dataCubes = GameManager.Instance.listCube.dataCubes;
-        foreach (BaseCube cube in dataCubes)
+        for(int i = 0; i < dataCubes.Count; i++)
         {
-            if (cube.poolTag == "ClassicCube")
+            if (dataCubes[i].poolTag == "ClassicCube")
             {
                 InforClassicCube inforCube = new InforClassicCube
                 {
-                    number = cube.GetComponent<Cube>().cubeNumber,
-                    position = cube.transform.position,
-                    rotation = cube.transform.rotation,
-                    isMainCube = cube.isMainCube,
+                    number = dataCubes[i].GetComponent<Cube>().cubeNumber,
+                    position = dataCubes[i].transform.position,
+                    rotation = dataCubes[i].transform.rotation,
+                    isMainCube = dataCubes[i].isMainCube,
                 };
                 inforClassicCubes.Add(inforCube);
             }
@@ -85,10 +77,10 @@ public class DataManager : MonoBehaviour
             {
                 InforSpecialCube inforCube = new InforSpecialCube
                 {
-                    tag = cube.poolTag,
-                    position = cube.transform.position,
-                    rotation = cube.transform.rotation,
-                    isMainCube = cube.isMainCube,
+                    tag = dataCubes[i].poolTag,
+                    position = dataCubes[i].transform.position,
+                    rotation = dataCubes[i].transform.rotation,
+                    isMainCube = dataCubes[i].isMainCube,
                 };
                 inforSpecialCubes.Add(inforCube);
             }
@@ -111,22 +103,22 @@ public class DataManager : MonoBehaviour
     }
     private void LoadCube(GameState gameState)
     {
-        foreach (InforClassicCube inforCube in gameState.listCubes)
+        for(int i = 0; i < gameState.listCubes.Count; i++)
         {
-            Vector3 position = Utilities.toVector3(inforCube.position.x, inforCube.position.y, inforCube.position.z);
-            Quaternion rotation = Utilities.toQuaternion(inforCube.rotation.x, inforCube.rotation.y, inforCube.rotation.z, inforCube.rotation.w);
-            GameManager.Instance.classicCubeManager.SpawnCube(inforCube.number, position, rotation, inforCube.isMainCube);
+            Vector3 position = Utilities.toVector3(gameState.listCubes[i].position.x, gameState.listCubes[i].position.y, gameState.listCubes[i].position.z);
+            Quaternion rotation = Utilities.toQuaternion(gameState.listCubes[i].rotation.x, gameState.listCubes[i].rotation.y, gameState.listCubes[i].rotation.z, gameState.listCubes[i].rotation.w);
+            GameManager.Instance.classicCubeManager.SpawnCube(gameState.listCubes[i].number, position, rotation, gameState.listCubes[i].isMainCube);
         }
     }
     private void LoadSpecialCube(GameState gameState)
     {
-        foreach (InforSpecialCube inforCube in gameState.listSpecialCubes)
+        for(int i = 0; i < gameState.listSpecialCubes.Count; i++)
         {
-            string tag = inforCube.tag;
-            Vector3 position = Utilities.toVector3(inforCube.position.x, inforCube.position.y, inforCube.position.z);
-            Quaternion rotation = Utilities.toQuaternion(inforCube.rotation.x, inforCube.rotation.y, inforCube.rotation.z, inforCube.rotation.w);
-            if (tag == "BombCube") GameManager.Instance.bombCubeManager.SpawnCube(tag, position, rotation, inforCube.isMainCube);
-            if (tag == "JokerCube") GameManager.Instance.jokerCubeManager.SpawnCube(tag, position, rotation, inforCube.isMainCube);
+            string tag = gameState.listSpecialCubes[i].tag;
+            Vector3 position = Utilities.toVector3(gameState.listSpecialCubes[i].position.x, gameState.listSpecialCubes[i].position.y, gameState.listSpecialCubes[i].position.z);
+            Quaternion rotation = Utilities.toQuaternion(gameState.listSpecialCubes[i].rotation.x, gameState.listSpecialCubes[i].rotation.y, gameState.listSpecialCubes[i].rotation.z, gameState.listSpecialCubes[i].rotation.w);
+            if (tag == "BombCube") GameManager.Instance.bombCubeManager.SpawnCube(tag, position, rotation, gameState.listSpecialCubes[i].isMainCube);
+            if (tag == "JokerCube") GameManager.Instance.jokerCubeManager.SpawnCube(tag, position, rotation, gameState.listSpecialCubes[i].isMainCube);
         }
     }
     private void LoadNextCube(GameState gameState)

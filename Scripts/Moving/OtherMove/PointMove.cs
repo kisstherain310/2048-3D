@@ -8,7 +8,7 @@ public class PointMove : MonoBehaviour
     {
         StartCoroutine(MoveEffectCoroutine(pointStart, pointEnd));
     }
-    private IEnumerator MoveEffectCoroutine(Vector3 pointStart, Vector3 pointEnd) // A -> B -> C -> B -> D -> B
+    IEnumerator MoveEffectCoroutine(Vector3 pointStart, Vector3 pointEnd) // A -> B -> C -> B -> D -> B
     {
         Vector3 A = pointStart;
         Vector3 B = pointEnd;
