@@ -1484,8 +1484,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 122868f99dce2d443b1db425bdcdbd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endScale: {x: 0, y: 0, z: 0}
-  duration: 0.1
 --- !u!1 &6836382020382003889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,8 +1592,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.0038909912
-        value: 0.9351845
+        time: 0
+        value: 1
         inSlope: -1.0715423
         outSlope: -1.0715423
         tangentMode: 0

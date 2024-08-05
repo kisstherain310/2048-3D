@@ -31,11 +31,13 @@ public abstract class BaseCube : MonoBehaviour
     // ---- Event System --------------------------------
     public virtual void handlePointerUp()
     {
+        if(!GameManager.Instance.moveManager.isActive) return;
+        GameManager.Instance.moveManager.isActive = false;
         StartCoroutine(TrailAction());
         SetMainCube(false);
         SetActiveLine(false);
         ApplyPushForce();
-        SpawnNewCube();
+        SpawnNewCube(); // Chay lien tuc ham nay
         UpdateDefaultPosition();
     }
     IEnumerator TrailAction()
@@ -61,7 +63,7 @@ public abstract class BaseCube : MonoBehaviour
     {
         rb.AddForce(Vector3.forward * pushForce, ForceMode.Impulse);
     }
-    private void SpawnNewCube()
+    private void SpawnNewCube() // // Chay lien tuc ham nay
     {
         GameManager.Instance.classicCubeManager.SpawnClassicCube();
         GameManager.Instance.SetMainCubeNull();

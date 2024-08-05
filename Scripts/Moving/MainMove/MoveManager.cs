@@ -8,6 +8,7 @@ public class MoveManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     [SerializeField] public float maxPosx = 1.63f;
     protected Vector3 offset;
     private BaseCube baseCube;
+    [HideInInspector] public bool isActive = false;
     // ---- Event System --------------------------------
     public void SetCube(BaseCube baseCube)
     {
@@ -15,20 +16,20 @@ public class MoveManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!baseCube.isMainCube) return;
+        if (!isActive || !baseCube.isMainCube) return;
         offset = baseCube.transform.position - GetMouseWorldPos();
     }
     public void OnDrag(PointerEventData eventData)
     {
-        if (!baseCube.isMainCube) return;
-        Vector3 newPos = (GetMouseWorldPos() + offset) * 1.4f;
+        if (!isActive || !baseCube.isMainCube) return;
+        Vector3 newPos = (GetMouseWorldPos() + offset) * 1.3f;
         if (newPos.x > maxPosx) newPos.x = maxPosx;
         if (newPos.x < -maxPosx) newPos.x = -maxPosx;
         baseCube.transform.position = new Vector3(newPos.x, baseCube.transform.position.y, baseCube.transform.position.z);
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (!baseCube.isMainCube) return;
+        if (!isActive || !baseCube.isMainCube) return;
         baseCube.handlePointerUp();
     }
     // ---- Helper Methods --------------------------------

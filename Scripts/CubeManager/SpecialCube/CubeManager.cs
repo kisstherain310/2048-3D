@@ -27,7 +27,7 @@ public abstract class CubeManagerBase<T> : MonoBehaviour where T : MonoBehaviour
         newCube.GetComponent<BaseCube>().SetMainCube(true);
         newCube.GetComponent<BaseCube>().SetActiveLine(true);
         newCube.GetComponent<BaseCube>().OffTrail();
-        newCube.GetComponent<BaseCube>().initEffect.growEffect();
+        newCube.GetComponent<BaseCube>().initEffect.growEffect(); // giã vào đây liên tục
         newCube.transform.SetParent(cubeParent.transform);
         GameManager.Instance.SetMainCube(newCube.GetComponent<BaseCube>());
         GameManager.Instance.listCube.AddDataCube(newCube.GetComponent<BaseCube>());
@@ -41,7 +41,7 @@ public abstract class CubeManagerBase<T> : MonoBehaviour where T : MonoBehaviour
             GameManager.Instance.DestroyMainCube();
         }
     }
-    public void SpawnCube(string poolTag)
+    public void SpawnCube(string poolTag) // hamd nay chay lien tuc
     {
         CheckNull(); // sinh ra cube mới ở vị trí xuất phát
         if (GameManager.Instance.mainCube == null && GameManager.Instance.gameStatus.IsPlaying()){

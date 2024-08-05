@@ -42,11 +42,12 @@ public class ClassicCubeManager : MonoBehaviour
     }
     IEnumerator ISpawnClassicCube()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
         if (GameManager.Instance.mainCube == null && GameManager.Instance.gameStatus.IsPlaying())
         {
             InitClassicCube();
             GameManager.Instance.SpawnNextCube();
+            GameManager.Instance.moveManager.isActive = true;
             GameManager.Instance.dataManager.SaveGameState();
         }
     }

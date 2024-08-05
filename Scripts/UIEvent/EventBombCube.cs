@@ -9,5 +9,6 @@ public class EventBombCube : MonoBehaviour
     {
         VibrationManagerX.Vibrate();
         GameManager.Instance.bombCubeManager.SpawnBombCube();
+        GameManager.Instance.moveManager.isActive = true;
     }
 }

@@ -9,5 +9,6 @@ public class EventJokerCube : MonoBehaviour
     {
         VibrationManagerX.Vibrate();
         GameManager.Instance.jokerCubeManager.SpawnJokerCube();
+        GameManager.Instance.moveManager.isActive = true;
     }
 }

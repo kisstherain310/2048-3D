@@ -67,7 +67,7 @@ public class UIEvent : MonoBehaviour
         scroll.FixOnTop();
         SoundManager.instance.PlayClip(AudioType.ButtonClick);
     }
-    public void OpenHome(){
+    public void CloseShop(){
         skins.SetActive(false);
         SoundManager.instance.PlayClip(AudioType.ButtonClick);
     }

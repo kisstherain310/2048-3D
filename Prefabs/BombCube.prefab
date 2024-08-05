@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 0.2
+  halfDuration: 0.07
 --- !u!1 &4670419005889546954
 GameObject:
   m_ObjectHideFlags: 0
@@ -9959,8 +9960,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.0077819824
-        value: 0.94444466
+        time: 0.0033874512
+        value: 1
         inSlope: -1.0715423
         outSlope: -1.0715423
         tangentMode: 0

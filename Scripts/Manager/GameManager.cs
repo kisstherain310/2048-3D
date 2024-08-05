@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public PointCubeManager pointCubeManager;
     public DataManager dataManager;
     public LevelManager levelManager;
+    public UIEvent uIEvent;
     public UIGameLose uiGameLose;
     public GameStatus gameStatus;
     [HideInInspector] public BaseCube mainCube = null;
