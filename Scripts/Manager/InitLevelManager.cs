@@ -22,6 +22,6 @@ public class InitLevelManager : MonoBehaviour
         Invoke("InitializeCube", 1.5f);
     }
     private void InitializeCube(){
-        GameManager.Instance.classicCubeManager.InitializeCube();
+        if(GameManager.Instance.mainCube == null) GameManager.Instance.classicCubeManager.InitializeCube();
     }
 }

@@ -111,7 +111,6 @@ public class GameManager : MonoBehaviour
     {
         uiGameLose.Show();
         gameStatus.OnGameOver();
-        scoreManager.EditScore();
     }
 
     public void OnPlay()

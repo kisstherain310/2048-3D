@@ -43,8 +43,11 @@ public class LevelManager : MonoBehaviour
     }
     private void DespawnLevel()
     {
+        GameManager.Instance.dataManager.SaveScoreUser();
         GameManager.Instance.listCube.RemoveAllCube();
         GameManager.Instance.boardManager.DestroyBoard(); 
         GameManager.Instance.InitGame();
+        GameManager.Instance.scoreManager.EditScore();
+        GameManager.Instance.dataManager.SaveGameState();
     }
 }

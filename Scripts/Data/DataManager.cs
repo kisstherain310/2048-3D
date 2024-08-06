@@ -10,7 +10,14 @@ public class DataManager : MonoBehaviour
         get { return PlayerPrefs.GetString("GameState", ""); }
         set { PlayerPrefs.SetString("GameState", value); }
     }
+    public string UserData
+    {
+        get { return PlayerPrefs.GetString("UserData", ""); }
+        set { PlayerPrefs.SetString("UserData", value); }
+    }
     public GameState gameState;
+    public UserData userData;
+    private List<int> listScore;
     private List<InforClassicCube> inforClassicCubes;
     private List<InforSpecialCube> inforSpecialCubes;
     private InforClassicCube nextCube;
@@ -51,6 +58,18 @@ public class DataManager : MonoBehaviour
 
         GameState = JsonUtility.ToJson(gameState);
     }
+    public void SaveScoreUser(){
+        if(listScore == null){
+            listScore = new List<int>();
+        }
+        listScore.Add(GameManager.Instance.scoreManager.score);
+        Generate.instance.ProcessUserData();
+        UserData userData = new UserData
+        {
+            listScore = listScore,
+        };
+        UserData = JsonUtility.ToJson(userData);
+    }
 
     public void LoadGameState()
     {
@@ -71,6 +90,10 @@ public class DataManager : MonoBehaviour
             LoadStateSetting(gameState);
         }
         else haveData = false;
+        if(UserData.Length > 0){
+            userData = JsonUtility.FromJson<UserData>(UserData);
+            listScore = userData.listScore;
+        }
     }
     private void SaveCube()
     {
