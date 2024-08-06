@@ -10,4 +10,11 @@ public class GameState
     public InforClassicCube nextCube;
     public int score;
     public int highScore;
+    public int countBombCube;
+    public int countJokerCube;
+    public bool isVibrate;
+    public bool isSound;
+    public bool isMusic;
+    public int indexMainBg;
+    public int maxCube;
 }

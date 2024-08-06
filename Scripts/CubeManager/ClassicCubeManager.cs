@@ -7,8 +7,7 @@ public class ClassicCubeManager : MonoBehaviour
 {
     private ListCube listCube;
     public Transform defaultCubeSpawnPoint;
-    public int lastNumber = 64;
-    public int lastOfLastNumber = 32;
+    public int maxCube = 64;
     private GameObject cubeParent;
 
     public void Initialize(ListCube listCube, Transform defaultCubeSpawnPoint, GameObject cubeParent)
@@ -36,20 +35,26 @@ public class ClassicCubeManager : MonoBehaviour
         return newCube;
     }
     // ----------------- Helper Method -----------------
+    public void InitializeCube()
+    {
+        InitClassicCube();
+        GameManager.Instance.SpawnNextCube();
+        GameManager.Instance.dataManager.SaveGameState();
+    }
     public void SpawnClassicCube()
     {
         StartCoroutine(ISpawnClassicCube());
     }
     IEnumerator ISpawnClassicCube()
     {
-        yield return new WaitForSeconds(0.6f);
-        if (GameManager.Instance.mainCube == null && GameManager.Instance.gameStatus.IsPlaying())
+        float deltaTime = 0f;
+        while(deltaTime < 0.5f)
         {
-            InitClassicCube();
-            GameManager.Instance.SpawnNextCube();
-            GameManager.Instance.moveManager.isActive = true;
-            GameManager.Instance.dataManager.SaveGameState();
+            deltaTime += Time.deltaTime;
+            GameManager.Instance.moveManager.isActive = false;
+            yield return null;
         }
+        if (GameManager.Instance.mainCube == null && GameManager.Instance.gameStatus.IsPlaying()) InitializeCube();
     }
     // ----------------- Create and Destroy -----------------
     private Cube CreateNewCube(Vector3 position, bool condition, int number)
@@ -59,12 +64,17 @@ public class ClassicCubeManager : MonoBehaviour
         newCube.SetActiveLine(condition);
         newCube.trail.OffTrail();
         newCube.EditCube(number);
+        if(number > maxCube){
+            maxCube = number;
+            Invoke("OpenNotiCube", 1.5f);
+        }
 
         listCube.AddCube(newCube);
         listCube.AddDataCube(newCube);
         newCube.transform.SetParent(cubeParent.transform);
         return newCube;
     }
+    private void OpenNotiCube() => GameManager.Instance.uIEvent.eventButton.OpenNotiCube();
 
     public void SpawnCube(int number, Vector3 position, Quaternion rotation, bool isMainCube)
     {

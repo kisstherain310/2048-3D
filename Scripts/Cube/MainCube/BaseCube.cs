@@ -33,6 +33,7 @@ public abstract class BaseCube : MonoBehaviour
     {
         if(!GameManager.Instance.moveManager.isActive) return;
         GameManager.Instance.moveManager.isActive = false;
+        DecreaseCube();
         StartCoroutine(TrailAction());
         SetMainCube(false);
         SetActiveLine(false);
@@ -40,6 +41,7 @@ public abstract class BaseCube : MonoBehaviour
         SpawnNewCube(); // Chay lien tuc ham nay
         UpdateDefaultPosition();
     }
+    protected virtual void DecreaseCube(){}
     IEnumerator TrailAction()
     {
         trail.OnTrail();

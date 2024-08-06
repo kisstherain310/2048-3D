@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public Transform defaultCubeSpawnPoint;
     public ListCube listCube;
+    public InitLevelManager initLevelManager;
     public Cube nextCube;
     public ScoreManager scoreManager;
     public BoardManager boardManager;
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
     public GameStatus gameStatus;
     [HideInInspector] public BaseCube mainCube = null;
 
+    private int indexLevel = 0;
 
     private void Awake()
     {
@@ -33,10 +35,12 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        // dataManager.LoadGameState();
+        // Nếu có dữ liệu nhưng kh có cube ở điểm bắt đầu thì khởi tạo lại mainCube
+        dataManager.LoadGameState();
+        SoundManager.instance.Initialize();
         boardManager.SpawnBoard(levelManager.GetMainLevel());
         if (!dataManager.CheckData()) InitGame();
-        else if (mainCube == null) classicCubeManager.SpawnClassicCube(); // Nếu có dữ liệu nhưng kh có cube ở điểm bắt đầu thì khởi tạo lại mainCube
+        else if (mainCube == null) classicCubeManager.SpawnClassicCube();
     }
     // ----------------- Init -----------------
 
@@ -47,7 +51,8 @@ public class GameManager : MonoBehaviour
         classicCubeManager.SetParent(levelManager.GetMainLevel());
         jokerCubeManager.SetParent(levelManager.GetMainLevel());
         bombCubeManager.SetParent(levelManager.GetMainLevel());
-        classicCubeManager.SpawnClassicCube();
+        classicCubeManager.maxCube = 64;
+        initLevelManager.SpawnLevel(indexLevel++ % 3);   
         gameStatus.OnPlay();
     }
     private void InitManagers()
@@ -71,13 +76,7 @@ public class GameManager : MonoBehaviour
     // ----------------- Helper Method -----------------
     public int GenerateRandomNumber() // 3 cube liên tiếp không được giống nhau
     {
-        int number = (int)Mathf.Pow(2, Random.Range(1, 7));
-        while (number == classicCubeManager.lastNumber || number == classicCubeManager.lastOfLastNumber)
-        {
-            number = (int)Mathf.Pow(2, Random.Range(1, 7));
-        }
-        classicCubeManager.lastOfLastNumber = classicCubeManager.lastNumber;
-        classicCubeManager.lastNumber = number;
+        int number = Generate.instance.GenerateNumber(scoreManager.score);
         return number;
     }
     public void UpdateDefaultPosition(Vector3 position)

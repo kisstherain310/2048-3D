@@ -1678,7 +1678,7 @@ MonoBehaviour:
   poolTag: ClassicCube
   line: {fileID: 4881338058224493445}
   trail: {fileID: 8565121970242938892}
-  pushForce: 25
+  pushForce: 27
   isMainCube: 1
   initEffect: {fileID: 4358205618839205419}
   rb: {fileID: 0}

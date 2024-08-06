@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BombCube : BaseCube
 {
@@ -12,5 +13,9 @@ public class BombCube : BaseCube
     protected override void InitCubeMove()
     {
         cubeMove.GetCube(this);
+    }
+    protected override void DecreaseCube()
+    {
+        GameManager.Instance.uIEvent.eventBombCube.DecreaseCount();
     }
 }

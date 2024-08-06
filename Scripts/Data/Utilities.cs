@@ -26,4 +26,15 @@ public class Utilities
         }
         return Number;
     }
+    public static Vector3 GetRandomVector3()
+    {
+        float x = Random.Range(-3f, -1f);
+        float y = Random.Range(-1f, 1f);
+        float z = Random.Range(-1f, 1f);
+        return new Vector3(x, y, z);
+    }
+    public static bool Random66()
+    {
+        return Random.Range(0, 100) <= 66;
+    }
 }

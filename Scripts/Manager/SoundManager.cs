@@ -35,14 +35,20 @@ public class SoundManager : MonoBehaviour
     public bool isVibrate = true;
     public bool isSound = true;
     public bool isMusic = true;
-    void Start()
+    public void Initialize()
     {
+        if(!isMusic) audios[0].Stop();
         for (int i = 1; i < audios.Length; i++) audios[i].Stop();
+    }
+    public void SetState(bool isVibrate, bool isSound, bool isMusic)
+    {
+        this.isVibrate = isVibrate;
+        this.isSound = isSound;
+        this.isMusic = isMusic;
     }
     public void PlayClip(AudioType type)
     {
         if ((int)type > 0 && !isSound) return;
-        if ((int)type == 0 && !isMusic) return;
         audios[(int)type].Play();
     }
     public void StopClip(AudioType type)

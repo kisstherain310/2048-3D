@@ -10033,7 +10033,7 @@ MonoBehaviour:
   poolTag: BombCube
   line: {fileID: 7414945429529317949}
   trail: {fileID: 6351377032252585170}
-  pushForce: 24
+  pushForce: 23
   isMainCube: 1
   initEffect: {fileID: 2416481921452905790}
   rb: {fileID: 0}

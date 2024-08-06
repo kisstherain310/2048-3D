@@ -556,7 +556,7 @@ MonoBehaviour:
   poolTag: JokerCube
   line: {fileID: 373808932625289585}
   trail: {fileID: 9019158434320443961}
-  pushForce: 24
+  pushForce: 23
   isMainCube: 1
   initEffect: {fileID: 1673499463584565437}
   rb: {fileID: 0}

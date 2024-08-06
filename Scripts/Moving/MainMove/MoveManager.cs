@@ -22,7 +22,7 @@ public class MoveManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     public void OnDrag(PointerEventData eventData)
     {
         if (!isActive || !baseCube.isMainCube) return;
-        Vector3 newPos = (GetMouseWorldPos() + offset) * 1.3f;
+        Vector3 newPos = (GetMouseWorldPos() + offset);
         if (newPos.x > maxPosx) newPos.x = maxPosx;
         if (newPos.x < -maxPosx) newPos.x = -maxPosx;
         baseCube.transform.position = new Vector3(newPos.x, baseCube.transform.position.y, baseCube.transform.position.z);

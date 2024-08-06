@@ -16,6 +16,13 @@ public class DataManager : MonoBehaviour
     private InforClassicCube nextCube;
     private int score;
     private int highScore;
+    private int countBombCube;
+    private int countJokerCube;
+    private bool isVibrate;
+    private bool isSound;
+    private bool isMusic;
+    private int indexMainBg;
+    private int maxCube;
     private List<BaseCube> dataCubes;
     private bool haveData = false;
 
@@ -24,6 +31,8 @@ public class DataManager : MonoBehaviour
         SaveCube();
         SaveNextCube();
         SaveScore();
+        SaveCountCube();
+        SaveStateSetting();
         GameState gameState = new GameState
         {
             listCubes = inforClassicCubes,
@@ -31,6 +40,13 @@ public class DataManager : MonoBehaviour
             nextCube = nextCube,
             score = score,
             highScore = highScore,
+            countBombCube = countBombCube,
+            countJokerCube = countJokerCube,
+            isVibrate = isVibrate,
+            isSound = isSound,
+            isMusic = isMusic,
+            indexMainBg = indexMainBg,
+            maxCube = maxCube,
         };
 
         GameState = JsonUtility.ToJson(gameState);
@@ -51,9 +67,10 @@ public class DataManager : MonoBehaviour
             LoadSpecialCube(gameState);
             LoadNextCube(gameState);
             LoadScore(gameState);
+            LoadCountCube(gameState);
+            LoadStateSetting(gameState);
         }
         else haveData = false;
-
     }
     private void SaveCube()
     {
@@ -85,6 +102,7 @@ public class DataManager : MonoBehaviour
                 inforSpecialCubes.Add(inforCube);
             }
         }
+        maxCube = GameManager.Instance.classicCubeManager.maxCube;
     }
     private void SaveNextCube()
     {
@@ -101,6 +119,16 @@ public class DataManager : MonoBehaviour
         score = GameManager.Instance.scoreManager.score;
         highScore = GameManager.Instance.scoreManager.highScore;
     }
+    private void SaveCountCube(){
+        countBombCube = GameManager.Instance.uIEvent.eventBombCube.countBombCube;
+        countJokerCube = GameManager.Instance.uIEvent.eventJokerCube.countJokerCube;
+    }
+    private void SaveStateSetting(){
+        isVibrate = SoundManager.instance.isVibrate;
+        isSound = SoundManager.instance.isSound;
+        isMusic = SoundManager.instance.isMusic;
+        indexMainBg = BgManager.instance.indexMainBg;
+    }
     private void LoadCube(GameState gameState)
     {
         for(int i = 0; i < gameState.listCubes.Count; i++)
@@ -109,6 +137,7 @@ public class DataManager : MonoBehaviour
             Quaternion rotation = Utilities.toQuaternion(gameState.listCubes[i].rotation.x, gameState.listCubes[i].rotation.y, gameState.listCubes[i].rotation.z, gameState.listCubes[i].rotation.w);
             GameManager.Instance.classicCubeManager.SpawnCube(gameState.listCubes[i].number, position, rotation, gameState.listCubes[i].isMainCube);
         }
+        GameManager.Instance.classicCubeManager.maxCube = gameState.maxCube;
     }
     private void LoadSpecialCube(GameState gameState)
     {
@@ -128,6 +157,19 @@ public class DataManager : MonoBehaviour
     private void LoadScore(GameState gameState)
     {
         GameManager.Instance.scoreManager.SetScore(gameState.score, gameState.highScore);
+    }
+    private void LoadCountCube(GameState gameState){
+        GameManager.Instance.uIEvent.eventBombCube.SetCount(gameState.countBombCube);
+        GameManager.Instance.uIEvent.eventJokerCube.SetCount(gameState.countJokerCube);
+    }
+    private void LoadStateSetting(GameState gameState){
+        SoundManager.instance.SetState(gameState.isVibrate, gameState.isSound, gameState.isMusic);
+        GameManager.Instance.uIEvent.RestoreSetting();
+        BgManager.instance.ChangeToNewSprite(gameState.indexMainBg);
+    }
+    public void ClearData()
+    {
+        GameState = "";
     }
     public bool CheckData()
     {

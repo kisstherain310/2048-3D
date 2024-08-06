@@ -30,6 +30,7 @@ public class InitEffect : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        GameManager.Instance.moveManager.isActive = true;
         transform.localScale = targetScale;
         elapsedTime = 0f;
         while (elapsedTime < halfDuration)

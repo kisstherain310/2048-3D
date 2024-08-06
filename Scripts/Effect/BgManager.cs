@@ -7,14 +7,15 @@ using UnityEngine.UI;
 public class BgManager : MonoBehaviour
 {
     // Gán sprite mới thông qua Inspector
-    public static BgManager Instance;
+    public static BgManager instance;
     [SerializeField] private Sprite[] listSprite;
     [SerializeField] private List<Button> listButtons;
     private SpriteRenderer spriteRenderer;
+    public int indexMainBg = 4;
 
     void Awake()
     {
-        Instance = this;
+        instance = this;
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Start()
@@ -29,7 +30,9 @@ public class BgManager : MonoBehaviour
 
     public void ChangeToNewSprite(int index)
     {
+        indexMainBg = index;
         spriteRenderer.sprite = listSprite[index];
-        GameManager.Instance.uIEvent.CloseShop();
+        GameManager.Instance.uIEvent.eventButton.CloseShop();
+        GameManager.Instance.dataManager.SaveGameState();
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class BaseCollisionHandler<T> : MonoBehaviour
 {
     protected Cube cube;
-    protected float jumpForce = 3f;
+    protected float jumpForce = 4f;
     protected float momen = 45f;
     protected float minMomen = 30f;
 
@@ -18,7 +18,7 @@ public abstract class BaseCollisionHandler<T> : MonoBehaviour
     protected void ProcessNewCube(Cube newCube, Vector3 contactPoint)
     {
         // Jump effect
-        Vector3 direction = new Vector3(0, 2f, 1f);
+        Vector3 direction = new Vector3(0.2f, 2, 0.2f);
         newCube.rb.AddForce(direction * jumpForce, ForceMode.Impulse);
         newCube.spawnEffect.ExploreEffect();
 
@@ -27,16 +27,10 @@ public abstract class BaseCollisionHandler<T> : MonoBehaviour
         if (targetMove != Vector3.zero) newCube.cubeX2Move.moveToTarget(targetMove);
 
         // Random rotation
-        Vector3 randomDirection = GetRandomVector3() * 50f;
+        Vector3 randomDirection = Utilities.GetRandomVector3() * 50f;
         newCube.rb.AddTorque(randomDirection);
     }
-    private Vector3 GetRandomVector3()
-    {
-        float x = Random.Range(-3f, -1f);
-        float y = Random.Range(-1f, 1f);
-        float z = Random.Range(-1f, 1f);
-        return new Vector3(x, y, z);
-    }
+
     protected void SpawnPointCube(Vector3 position, int point)
     {
         GameManager.Instance.pointCubeManager.SpawnPointCube(position, point);
