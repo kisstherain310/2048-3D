@@ -20,12 +20,7 @@ public class EventBombCube : MonoBehaviour
         countBombCube = number;
         count.text = number.ToString();
     }
-    public void DecreaseCount(){
-        countBombCube--;
-        count.text = countBombCube.ToString();
-    }
-    public void IncreaseCount(){
-        countBombCube++;
-        count.text = countBombCube.ToString();
-    }
+    public void SetText() => count.text = countBombCube.ToString();
+    public void DecreaseCount() => countBombCube--;
+    public void IncreaseCount() => countBombCube++;
 }

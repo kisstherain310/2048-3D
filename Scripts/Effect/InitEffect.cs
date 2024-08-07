@@ -18,6 +18,7 @@ public class InitEffect : MonoBehaviour
 
     private IEnumerator ScaleUpCoroutine()
     {
+        GameManager.Instance.moveManager.isActive = true;
         float elapsedTime = 0f;
         initScale = Vector3.zero;
         targetScale = Vector3.one;
@@ -30,7 +31,6 @@ public class InitEffect : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        GameManager.Instance.moveManager.isActive = true;
         transform.localScale = targetScale;
         elapsedTime = 0f;
         while (elapsedTime < halfDuration)

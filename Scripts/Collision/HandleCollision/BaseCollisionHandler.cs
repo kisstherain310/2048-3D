@@ -18,7 +18,7 @@ public abstract class BaseCollisionHandler<T> : MonoBehaviour
     protected void ProcessNewCube(Cube newCube, Vector3 contactPoint)
     {
         // Jump effect
-        Vector3 direction = new Vector3(0.2f, 2, 0.2f);
+        Vector3 direction = new Vector3(0, 2.3f, 0);
         newCube.rb.AddForce(direction * jumpForce, ForceMode.Impulse);
         newCube.spawnEffect.ExploreEffect();
 
@@ -38,7 +38,7 @@ public abstract class BaseCollisionHandler<T> : MonoBehaviour
     protected void ExplosionForce(Vector3 contactPoint)
     {
         Collider[] surroundedCubes = Physics.OverlapSphere(contactPoint, 1f);
-        float explosionForce = 30f;
+        float explosionForce = 3f;
         float explosionRadius = 1.05f;
         for (int i = 0; i < surroundedCubes.Length; i++)
         {

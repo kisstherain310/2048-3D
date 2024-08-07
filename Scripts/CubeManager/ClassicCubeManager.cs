@@ -48,7 +48,7 @@ public class ClassicCubeManager : MonoBehaviour
     IEnumerator ISpawnClassicCube()
     {
         float deltaTime = 0f;
-        while(deltaTime < 0.5f)
+        while(deltaTime < 0.65f)
         {
             deltaTime += Time.deltaTime;
             GameManager.Instance.moveManager.isActive = false;
@@ -66,7 +66,7 @@ public class ClassicCubeManager : MonoBehaviour
         newCube.EditCube(number);
         if(number > maxCube){
             maxCube = number;
-            Invoke("OpenNotiCube", 1.5f);
+            Invoke("OpenNotiCube", 1f);
         }
 
         listCube.AddCube(newCube);

@@ -46,8 +46,9 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.dataManager.SaveScoreUser();
         GameManager.Instance.listCube.RemoveAllCube();
         GameManager.Instance.boardManager.DestroyBoard(); 
-        GameManager.Instance.InitGame();
         GameManager.Instance.scoreManager.EditScore();
+        GameManager.Instance.SpawnNextCube();   
+        GameManager.Instance.InitGame();
         GameManager.Instance.dataManager.SaveGameState();
     }
 }

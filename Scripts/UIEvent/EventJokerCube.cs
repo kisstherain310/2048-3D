@@ -19,12 +19,8 @@ public class EventJokerCube : MonoBehaviour
         countJokerCube = number;
         count.text = number.ToString();
     }
-    public void DecreaseCount(){
-        countJokerCube--;
-        count.text = countJokerCube.ToString();
-    }  
-    public void IncreaseCount(){
-        countJokerCube++;
-        count.text = countJokerCube.ToString();
-    } 
+    public void SetText() => count.text = countJokerCube.ToString();
+    public void DecreaseCount() => countJokerCube--;
+    public void IncreaseCount() => countJokerCube++;
+    
 }

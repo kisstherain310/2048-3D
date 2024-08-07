@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
         classicCubeManager.maxCube = 64;
         initLevelManager.SpawnLevel(indexLevel++ % 3);   
         gameStatus.OnPlay();
+        Generate.instance.ProcessUserData();
     }
     private void InitManagers()
     {

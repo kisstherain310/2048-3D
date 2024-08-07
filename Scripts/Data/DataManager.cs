@@ -64,6 +64,9 @@ public class DataManager : MonoBehaviour
         }
         listScore.Add(GameManager.Instance.scoreManager.score);
         Generate.instance.ProcessUserData();
+        for(int i = 0; i < listScore.Count; i++){
+            Debug.Log(listScore[i]);
+        }
         UserData userData = new UserData
         {
             listScore = listScore,

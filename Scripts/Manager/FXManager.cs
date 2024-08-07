@@ -37,7 +37,7 @@ public class FXManager : MonoBehaviour
     // ------- Edit Position FX ----------------
     private void EditPositionFX (int index, Vector3 position) {
         if (index == 0 || index == 1 || index == 3 || index == 4) {
-            cubeExplosionFX[index].transform.position = position + Vector3.up ;
+            cubeExplosionFX[index].transform.position = position + Vector3.up * 0.4f;
         }
         else if (index == 2) {
             cubeExplosionFX[index].transform.position = position + new Vector3 (0, 1, -2) ;

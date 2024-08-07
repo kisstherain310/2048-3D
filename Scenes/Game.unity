@@ -14607,6 +14607,8 @@ MonoBehaviour:
     isMusic: 0
     indexMainBg: 0
     maxCube: 0
+  userData:
+    listScore: 
 --- !u!1 &1633116848
 GameObject:
   m_ObjectHideFlags: 0

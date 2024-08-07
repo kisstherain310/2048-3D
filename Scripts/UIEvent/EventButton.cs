@@ -57,5 +57,7 @@ public class EventButton : MonoBehaviour
     public void CloseNotiCube(){
         notiCube.SetActive(false);
         SoundManager.instance.PlayClip(AudioType.ButtonClick);
+        GameManager.Instance.uIEvent.eventBombCube.SetText();
+        GameManager.Instance.uIEvent.eventJokerCube.SetText();
     }
 }
