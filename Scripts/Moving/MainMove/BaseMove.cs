@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class BaseMove : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public abstract class BaseMove : MonoBehaviour, 
+IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     [SerializeField] public float maxPosx = 1.63f;
     protected Vector3 offset;

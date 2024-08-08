@@ -13,6 +13,7 @@ public abstract class BaseCube : MonoBehaviour
     [SerializeField] public bool isMainCube = true;
     [SerializeField] public InitEffect initEffect;
     [HideInInspector] public Rigidbody rb;
+    [HideInInspector] public Collider collider;
     [HideInInspector] public int CubeID;
 
     private void SetID()
@@ -24,11 +25,22 @@ public abstract class BaseCube : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        collider = GetComponent<Collider>();
         SetID();
         SetPoolTag();
         InitCubeMove();
     }
     // ---- Event System --------------------------------
+    public void ToggleCollider(float duration)
+    {
+        StartCoroutine(IToggleColliderCoroutine(duration));
+    }
+    private IEnumerator IToggleColliderCoroutine(float duration)
+    {
+        collider.enabled = false;
+        yield return new WaitForSeconds(duration);
+        collider.enabled = true;
+    }
     public virtual void handlePointerUp()
     {
         if(!GameManager.Instance.moveManager.isActive) return;

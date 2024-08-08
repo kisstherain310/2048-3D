@@ -19,9 +19,10 @@ public class InitLevelManager : MonoBehaviour
         {
             GameManager.Instance.classicCubeManager.SpawnCube(listNumberCube[level][i], listLevel[level].listCube[i].transform.position, Quaternion.identity, false);
         }
-        Invoke("InitializeCube", 1.5f);
+        Invoke("InitializeCube", 2f);
     }
     private void InitializeCube(){
         if(GameManager.Instance.mainCube == null) GameManager.Instance.classicCubeManager.InitializeCube();
+        GameManager.Instance.gameStatus.OnPlay();
     }
 }

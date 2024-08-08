@@ -16,8 +16,7 @@ public class CubeX2Move : MonoBehaviour
     private IEnumerator IMoveToTargetCoroutine(Vector3 targetPosition)
     {
         Vector3 direction = (targetPosition - transform.position);
-        direction = new Vector3(direction.x, 0, direction.z);
-        yield return new WaitForSeconds(0.16f);
+        direction = new Vector3(direction.x, 1.4f, direction.z);
 
         float elapsedTime = 0f;
         while (elapsedTime < duration)

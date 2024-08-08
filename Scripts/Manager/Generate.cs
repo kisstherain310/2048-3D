@@ -16,42 +16,42 @@ public class Generate : MonoBehaviour
     public int GenerateNumber(int score)
     {
         int number = 2;
+
         switch (typeUser)
         {
             case "easy":
-                number = ProcessScoreEasy(score);
+                number = ProcessEasy(score);
                 break;
             case "normal":
-                number = ProcessScoreNormal(score);
+                number = ProcessNormal(score);
                 break;
             case "hard":
-                number = ProcessScoreHard(score);
+                number = ProcessHard(score);
                 break;
         }
+
         lastOfLastOfLastNumber = lastOfLastNumber;
         lastOfLastNumber = lastNumber;
         lastNumber = number;
         return number;
     }
+
     public void ProcessUserData()
     {
         float average = 0;
         List<int> listScore = GameManager.Instance.dataManager.userData.listScore;
-        if (listScore == null || listScore.Count <= 3)
-        {
+        if (listScore == null || listScore.Count <= 3){
             typeUser = "normal";
             return;
         }
-        for (int i = 0; i < listScore.Count; i++)
-        {
-            average += (float)listScore[i];
-        }
+        for (int i = 0; i < listScore.Count; i++)  average += (float)listScore[i];
         average /= listScore.Count;
-        if (average < 1000) typeUser = "easy";
-        else if (average < 10000) typeUser = "normal";
+        if (average < 2000) typeUser = "easy";
+        else if (average < 20000) typeUser = "normal";
         else typeUser = "hard";
     }
-    private int ProcessScoreEasy(int score)
+
+    private int ProcessEasy(int score)
     {
         if (score < 20) return GenerateInit();
         else if (score < 600) return GenerateEasy();
@@ -60,16 +60,16 @@ public class Generate : MonoBehaviour
         else if (score < 100000) return GenerateHarder();
         else return GenerateHardest();
     }
-    private int ProcessScoreNormal(int score)
+    private int ProcessNormal(int score)
     {
         if (score < 20) return GenerateInit();
         else if (score < 500) return GenerateEasy();
-        else if (score < 1000) return GenerateNormal();
-        else if (score < 5000) return GenerateHard();
-        else if (score < 20000) return GenerateHarder();
+        else if (score < 2000) return GenerateNormal();
+        else if (score < 10000) return GenerateHard();
+        else if (score < 25000) return GenerateHarder();
         else return GenerateHardest();
     }
-    private int ProcessScoreHard(int score)
+    private int ProcessHard(int score)
     {
         if (score < 20) return GenerateInit();
         else if (score < 1000) return GenerateHard();

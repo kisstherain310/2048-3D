@@ -11,6 +11,7 @@ public class EventBombCube : MonoBehaviour
     public int countBombCube = 10;
     public void OnMouseDown()
     {
+        if(GameManager.Instance.gameStatus.IsPlaying() == false) return;
         if(countBombCube <= 0) return;
         VibrationManagerX.Vibrate();
         GameManager.Instance.bombCubeManager.SpawnBombCube();

@@ -17,5 +17,6 @@ public class BombCube : BaseCube
     protected override void DecreaseCube()
     {
         GameManager.Instance.uIEvent.eventBombCube.DecreaseCount();
+        GameManager.Instance.uIEvent.eventBombCube.SetText();
     }
 }

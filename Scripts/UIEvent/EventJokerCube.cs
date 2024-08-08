@@ -10,6 +10,7 @@ public class EventJokerCube : MonoBehaviour
     public int countJokerCube = 10;
     public void OnMouseDown()
     {
+        if(GameManager.Instance.gameStatus.IsPlaying() == false) return;
         if(countJokerCube <= 0) return;
         VibrationManagerX.Vibrate();
         GameManager.Instance.jokerCubeManager.SpawnJokerCube();

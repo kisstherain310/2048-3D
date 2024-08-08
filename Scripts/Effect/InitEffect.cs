@@ -18,7 +18,6 @@ public class InitEffect : MonoBehaviour
 
     private IEnumerator ScaleUpCoroutine()
     {
-        GameManager.Instance.moveManager.isActive = true;
         float elapsedTime = 0f;
         initScale = Vector3.zero;
         targetScale = Vector3.one;

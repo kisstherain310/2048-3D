@@ -17,5 +17,7 @@ public class JokerCube : BaseCube
     protected override void DecreaseCube()
     {
         GameManager.Instance.uIEvent.eventJokerCube.DecreaseCount();
+        GameManager.Instance.uIEvent.eventJokerCube.SetText();
+
     }
 }

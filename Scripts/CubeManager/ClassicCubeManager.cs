@@ -48,12 +48,13 @@ public class ClassicCubeManager : MonoBehaviour
     IEnumerator ISpawnClassicCube()
     {
         float deltaTime = 0f;
-        while(deltaTime < 0.65f)
+        while(deltaTime < 0.2f)
         {
             deltaTime += Time.deltaTime;
             GameManager.Instance.moveManager.isActive = false;
             yield return null;
         }
+        GameManager.Instance.moveManager.isActive = true;
         if (GameManager.Instance.mainCube == null && GameManager.Instance.gameStatus.IsPlaying()) InitializeCube();
     }
     // ----------------- Create and Destroy -----------------

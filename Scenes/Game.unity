@@ -16868,8 +16868,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 271.9, y: 409}
-  m_SizeDelta: {x: 45, y: 45}
+  m_AnchoredPosition: {x: 269, y: 403.64432}
+  m_SizeDelta: {x: 55.7113, y: 55.7113}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1874970751
 MonoBehaviour:
@@ -71660,6 +71660,7 @@ MonoBehaviour:
   isMainCube: 0
   initEffect: {fileID: 2081066800340649086}
   rb: {fileID: 0}
+  collider: {fileID: 0}
   CubeID: 0
   cubeUI: {fileID: 4168646402115920722}
   cubeMove: {fileID: 8785028004240762596}
