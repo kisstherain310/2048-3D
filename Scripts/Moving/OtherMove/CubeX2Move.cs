@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CubeX2Move : MonoBehaviour
 {
-    [SerializeField] private float speed = 0.2f;
-    private float duration = 1f;
+    [SerializeField] private float speed = 0.23f;
+    private float duration = 1.35f;
 
     // Move to target position which is the position of the cube that the current cube nearest to
     public void moveToTarget(Vector3 targetPosition)
@@ -16,7 +17,8 @@ public class CubeX2Move : MonoBehaviour
     private IEnumerator IMoveToTargetCoroutine(Vector3 targetPosition)
     {
         Vector3 direction = (targetPosition - transform.position);
-        direction = new Vector3(direction.x, 1.4f, direction.z);
+        float up = Random.Range(0.8f, 1.2f);
+        direction = new Vector3(direction.x, up, direction.z);
 
         float elapsedTime = 0f;
         while (elapsedTime < duration)

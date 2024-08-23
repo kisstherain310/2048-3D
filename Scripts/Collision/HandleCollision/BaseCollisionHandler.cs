@@ -18,7 +18,7 @@ public abstract class BaseCollisionHandler<T> : MonoBehaviour
     protected void ProcessNewCube(Cube newCube, Vector3 contactPoint)
     {
         // Jump effect
-        Vector3 direction = new Vector3(0, 2.3f, 0);
+        Vector3 direction = new Vector3(0, 3f, 0);
         newCube.rb.AddForce(direction * jumpForce, ForceMode.Impulse);
         newCube.spawnEffect.ExploreEffect();
 

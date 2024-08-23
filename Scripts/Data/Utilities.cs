@@ -28,9 +28,9 @@ public class Utilities
     }
     public static Vector3 GetRandomVector3()
     {
-        float x = Random.Range(-1f, -0.2f);
-        float y = Random.Range(0.1f, 0.4f);
-        float z = Random.Range(0.1f, 0.4f);
+        float x = Random.Range(-1.3f, -0.2f);
+        float y = Random.Range(0.1f, 0.5f);
+        float z = Random.Range(0.1f, 0.5f);
         return new Vector3(x, y, z);
     }
     public static bool Random66()
