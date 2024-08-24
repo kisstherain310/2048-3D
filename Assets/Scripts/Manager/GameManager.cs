@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public Transform defaultCubeSpawnPoint;
     public ListCube listCube;
     public InitLevelManager initLevelManager;
+    public Cube nextCube;
     public ScoreManager scoreManager;
     public BoardManager boardManager;
     public MoveManager moveManager;
@@ -85,7 +86,11 @@ public class GameManager : MonoBehaviour
         jokerCubeManager.defaultCubeSpawnPoint.position = newPosition;
         bombCubeManager.defaultCubeSpawnPoint.position = newPosition;
     }
-    
+    public void SpawnNextCube()
+    {
+        nextCube.EditCube(GenerateRandomNumber());
+        //nextCube.GetComponent<NextCubeMove>().MoveEffect();
+    }
     public void SetMainCube(BaseCube cube)
     {
         mainCube = cube;

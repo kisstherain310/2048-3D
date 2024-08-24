@@ -27,6 +27,10 @@ public class CubeUI : MonoBehaviour
 
     private void SetColor(Color color)
     {
+        if (meshRenderer == null)
+        {
+            return;
+        }
         this.color = color;
         Material material = meshRenderer.material;
 

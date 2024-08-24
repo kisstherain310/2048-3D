@@ -8,9 +8,9 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: M_Jelly
-    second: {fileID: 2100000, guid: 33ce6b8dc8ef9da4da7bec3238f3c931, type: 2}
+    second: {fileID: 2100000, guid: 7d67b5b7cf4312940a7b4638cb5ed955, type: 2}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1

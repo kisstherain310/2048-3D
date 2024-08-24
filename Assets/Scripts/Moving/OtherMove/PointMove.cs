@@ -15,7 +15,7 @@ public class PointMove : MonoBehaviour
         Vector3 C = A + (B - A) * 3 / 4;
         Vector3 D = C + (B - C) * 3 / 4;
 
-        float totalTime = 1.0f;
+        float totalTime = 2;
         float halfTime = totalTime / 1.625f;
         float quarterTime = totalTime * 0.25f / 1.625f;
         float elapsedTime = 0.0f;

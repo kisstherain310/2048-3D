@@ -14,6 +14,7 @@ public class FXManager : MonoBehaviour
     // ------- Initialization ----------------
     [SerializeField] private ParticleSystem[] cubeExplosionFX ;
     ParticleSystem.MainModule[] cubeExplosionFXMainModule ;
+    [SerializeField] private float threshold = 0.6f;
     void Awake () {
         Instance = this;
         cubeExplosionFXMainModule = new ParticleSystem.MainModule[cubeExplosionFX.Length];
@@ -37,7 +38,7 @@ public class FXManager : MonoBehaviour
     // ------- Edit Position FX ----------------
     private void EditPositionFX (int index, Vector3 position) {
         if (index == 0 || index == 1 || index == 3 || index == 4) {
-            cubeExplosionFX[index].transform.position = position + Vector3.up * 0.4f;
+            cubeExplosionFX[index].transform.position = position + Vector3.up * threshold;
         }
         else if (index == 2) {
             cubeExplosionFX[index].transform.position = position + new Vector3 (0, 1, -2) ;

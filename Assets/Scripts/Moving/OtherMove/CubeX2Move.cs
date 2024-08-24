@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,10 +6,19 @@ public class CubeX2Move : MonoBehaviour
 {
     [SerializeField] private float speed = 0.23f;
     private float duration = 1.35f;
+    private Rigidbody rb;
+    private Animator animator;
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
+    }
 
-    // Move to target position which is the position of the cube that the current cube nearest to
+    // Move to target position, stopping at a random distance
     public void moveToTarget(Vector3 targetPosition)
     {
+        animator.Play("Jump");
+
         StartCoroutine(IMoveToTargetCoroutine(targetPosition));
     }
 
@@ -21,11 +29,14 @@ public class CubeX2Move : MonoBehaviour
         direction = new Vector3(direction.x, up, direction.z);
 
         float elapsedTime = 0f;
+
         while (elapsedTime < duration)
         {
-            transform.position += speed * Time.deltaTime * direction;
+            // Move the Rigidbody towards the target position
+            rb.MovePosition(rb.position + speed * Time.deltaTime * direction);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        animator.Play("down");
     }
 }

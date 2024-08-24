@@ -36,6 +36,7 @@ public class DataManager : MonoBehaviour
     public void SaveGameState()
     {
         SaveCube();
+        SaveNextCube();
         SaveScore();
         SaveCountCube();
         SaveStateSetting();
@@ -86,6 +87,7 @@ public class DataManager : MonoBehaviour
             }
             LoadCube(gameState);
             LoadSpecialCube(gameState);
+            LoadNextCube(gameState);
             LoadScore(gameState);
             LoadCountCube(gameState);
             LoadStateSetting(gameState);
@@ -128,7 +130,16 @@ public class DataManager : MonoBehaviour
         }
         maxCube = GameManager.Instance.classicCubeManager.maxCube;
     }
-    
+    private void SaveNextCube()
+    {
+        nextCube = new InforClassicCube
+        {
+            number = GameManager.Instance.nextCube.cubeNumber,
+            position = GameManager.Instance.nextCube.transform.position,
+            rotation = GameManager.Instance.nextCube.transform.rotation,
+            isMainCube = GameManager.Instance.nextCube.isMainCube,
+        };
+    }
     private void SaveScore()
     {
         score = GameManager.Instance.scoreManager.score;
@@ -165,7 +176,10 @@ public class DataManager : MonoBehaviour
             if (tag == "JokerCube") GameManager.Instance.jokerCubeManager.SpawnCube(tag, position, rotation, gameState.listSpecialCubes[i].isMainCube);
         }
     }
-    
+    private void LoadNextCube(GameState gameState)
+    {
+        GameManager.Instance.nextCube.EditCube(gameState.nextCube.number);
+    }
     private void LoadScore(GameState gameState)
     {
         GameManager.Instance.scoreManager.SetScore(gameState.score, gameState.highScore);

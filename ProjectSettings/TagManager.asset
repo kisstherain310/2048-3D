@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ClassicCube
+  - JokerCube
+  - BombCube
+  - cube
+  - floor
+  - lose
+  - Ground
   layers:
   - Default
   - TransparentFX

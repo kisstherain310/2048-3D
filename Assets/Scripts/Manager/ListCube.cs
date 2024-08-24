@@ -39,6 +39,7 @@ public class ListCube : MonoBehaviour
     public Vector3 FindCubeNearest(Cube newCube)
     {
         float minDistance = Mathf.Infinity;
+        float maxDistance = 3f;
         Vector3 nearestCubePosition = Vector3.zero;
         for(int i = 0; i < cubes.Count; i++)
         {
@@ -46,7 +47,7 @@ public class ListCube : MonoBehaviour
             if (cubes[i].cubeNumber == newCube.cubeNumber)
             {
                 float distance = Vector3.Distance(cubes[i].transform.position, newCube.transform.position);
-                if (distance < minDistance && distance > 0)
+                if (distance < maxDistance && distance < minDistance && distance > 0)
                 {
                     minDistance = distance;
                     nearestCubePosition = cubes[i].transform.position;

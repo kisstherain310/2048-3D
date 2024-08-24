@@ -9,6 +9,9 @@ public class ClassicCubeManager : MonoBehaviour
     public Transform defaultCubeSpawnPoint;
     public int maxCube = 64;
     private GameObject cubeParent;
+    private int countTwo = 20, currentCount = 0;
+    private Animator cubeAnimator;
+    private Cube mainCube;
 
     public void Initialize(ListCube listCube, Transform defaultCubeSpawnPoint, GameObject cubeParent)
     {
@@ -23,7 +26,15 @@ public class ClassicCubeManager : MonoBehaviour
     public void InitClassicCube()
     {
         int number = 2;
-        Cube newCube = CreateNewCube(defaultCubeSpawnPoint.position, true, number);
+        if (GameManager.Instance.nextCube.cubeNumber > 0) number = GameManager.Instance.nextCube.cubeNumber;
+        Cube newCube;
+        if (GameManager.Instance.classicCubeManager.maxCube < 128)
+        {
+            newCube = CreateNewCube(defaultCubeSpawnPoint.position, true, 2);
+        } else
+        {
+            newCube = CreateNewCube(defaultCubeSpawnPoint.position, true, number);
+        }
         newCube.initEffect.growEffect();
         GameManager.Instance.SetMainCube(newCube);
         SoundManager.instance.PlayClip(AudioType.BoxShot);
@@ -37,6 +48,7 @@ public class ClassicCubeManager : MonoBehaviour
     public void InitializeCube()
     {
         InitClassicCube();
+        GameManager.Instance.SpawnNextCube();
         GameManager.Instance.dataManager.SaveGameState();
     }
     public void SpawnClassicCube()

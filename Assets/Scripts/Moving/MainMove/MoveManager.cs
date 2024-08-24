@@ -18,6 +18,7 @@ public class MoveManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     {
         if (!isActive || !baseCube.isMainCube) return;
         offset = baseCube.transform.position - GetMouseWorldPos();
+
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -30,6 +31,11 @@ public class MoveManager : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
     public void OnPointerUp(PointerEventData eventData)
     {
         if (!isActive || !baseCube.isMainCube) return;
+        Animator current = GameManager.Instance.mainCube.GetComponentInChildren<Animator>();
+        if (current != null)
+        {
+            current.Play("phongdi");
+        }
         baseCube.handlePointerUp();
     }
     // ---- Helper Methods --------------------------------
